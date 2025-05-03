@@ -1,0 +1,133 @@
+﻿
+@using ADM_music.Models
+@model List<AlbumPurchase>
+@{
+    ViewBag.Title = "QL_DH";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<div class="clearfix"></div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="card-title">Danh Sách Nghệ Sĩ</h5>
+                        <div class="form-group">
+                            @*<a href="@Url.Action("Add_Artict","Admin")" class="btn btn-light px-5"><i class="icon-plus"></i> Nghệ Sĩ Mới</a>*@
+                            <form action="@Url.Action("QL_DH", "Admin")" method="get">
+                                <select class="custom-select tm-select-accounts" name="trangthai" onchange="this.form.submit();">
+                                    <option value="">Chọn trạng thái</option>
+                                    @foreach (var item in Session["trangthai"] as List<TrangThaiDH>)
+                                    {
+                                        <option value="@item.MaTrangThai.Trim()">@item.TenTrangThai</option>
+                                    }
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped" style="table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã Đơn Hàng</th>
+                                    <th scope="col" style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tên Người Mua</th>
+                                    <th scope="col">Số Lượng SP</th>
+                                    <th scope="col">Ngày Đơn Hàng</th>
+                                    <th scope="col">Thanh Toán</th>
+                                    <th scope="col">Tổng Tiền</th>
+                                    <th scope="col" style="width:250px">Trạng Thái</th>
+                                    <th scope="col" >Print</th>
+                                    <th scope="col" >View</th>
+                                    <th scope="col" >Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td >@item.PurchaseID</td>
+                                        <td style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">null@*@item.User.Users_Info._Name*@</td>
+                                        <td >@item.Amount</td>
+                                        <td >@(item.PurchaseDate?.ToString(@"dd/MM/yyyy"))</td>
+                                        <td >@item.Method</td>
+                                        <td >@item.Total_Price</td>
+                                        <td style="width:300px; ">
+                                            <select class="form-control status-dropdown" data-id="@item.PurchaseID">
+                                                @foreach (var item2 in Session["TrangThai"] as List<TrangThaiDH>)
+                                                {
+                                                    <option value="@item2.MaTrangThai.Trim()"
+                                                            @(item.TrangThaiDH.MaTrangThai == item2.MaTrangThai ? "selected" : "")>
+                                                        @item2.TenTrangThai.Trim()
+                                                    </option>
+                                                }
+                                            </select>
+                                        </td>
+                                        
+                                        <td style="width:30px;" class="icon-cell" data-id="@item.PurchaseID">
+                                            @if (item.MaTrangThai.Trim() == "TT02" || (bool)Session["in"] == true)
+                                            {
+                                                <a class="fa fa-print fa-lg print-icon" aria-hidden="true" href="@Url.Action("print_Purchase", "Admin", new { PurchaseID = item.PurchaseID.Trim() })"></a>
+                                            }
+                                            else
+                                            {
+                                                <a class="fa fa-ban fa-lg view-icon" aria-hidden="true" ></a>
+                                            }
+                                        </td>
+
+                                        <td style="width:30px;"><a class="fa fa-eye fa-lg " aria-hidden="true" href="@Url.Action("View_Purchase", "Admin", new { PurchaseID = item.PurchaseID.Trim()})"></a></td>
+                                        <td style="width:30px;"><a class="fa fa-trash fa-lg" aria-hidden="true" href="@Url.Action("Delete_Purchase", "Admin", new { PurchaseID = @item.PurchaseID.Trim() })"></a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('.status-dropdown').change(function () {
+        var purchaseId = $(this).data('id');
+        var newTrangThai = $(this).val();
+
+        $.ajax({
+            url: '@Url.Action("Edit_DH", "Admin")',
+            type: 'POST',
+            data: {
+                id: purchaseId,
+                trangthai: newTrangThai
+            },
+            success: function (response) {
+                alert("Trang Thái Cập nhật thành công!");
+
+                    // Update the icon dynamically
+                    var iconCell = $('.icon-cell[data-id="' + purchaseId + '"]');
+                    if (newTrangThai === "TT02") {
+                        // Change to print icon
+                        iconCell.html(`
+                            <a class="fa fa-print fa-lg print-icon" aria-hidden="true" 
+                               href="@Url.Action("print_Purchase", "Admin")?PurchaseID=${purchaseId}"></a>
+                        `);
+                    } else {
+                        // Change to eye icon
+                        iconCell.html(`
+                            <a class="fa fa-ban fa-lg view-icon" aria-hidden="true"></a>
+                        `);
+                    }
+            },
+            error: function () {
+                alert("Lỗi khi cập nhật Trang Thái.");
+            }
+        });
+    });
+});
+</script>
+

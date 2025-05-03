@@ -1,0 +1,256 @@
+@keyframes move {  /* Định nghĩa animation với tên 'move' */
+    100% {  /* Tại 100% của animation */
+        transform: translate3d(0, 0, 1px) rotate(360deg);  /* Di chuyển 3D và xoay 360 độ */
+    }
+}
+
+*, *:after, *:before {  /* Áp dụng cho tất cả các phần tử và các pseudo-elements */
+	box-sizing: border-box;  /* Đặt mô hình box-sizing là border-box */
+}
+
+body {
+	font-family: "Lexend", sans-serif;  /* Thiết lập font chữ cho toàn bộ trang */
+	line-height: 1.5;  /* Đặt chiều cao dòng là 1.5 lần chiều cao chữ */
+	min-height: 100vh;  /* Chiều cao tối thiểu của body là 100% chiều cao của cửa sổ */
+	display: flex;  /* Sử dụng Flexbox cho layout */
+	justify-content: center;  /* Căn giữa nội dung theo chiều ngang */
+	color: #7d3636;  /* Màu chữ */
+}
+
+/* Thiết lập cho trình duyệt Webkit (Chrome, Safari, Opera) */
+::-webkit-scrollbar {
+	width: 6px;  /* Chiều rộng của thanh cuộn */
+	background-color: #090977e1;  /* Màu nền của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #1b0c19;  /* Màu của thanh cuộn khi kéo */
+	border-radius: 10px;  /* Góc tròn của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #EC4646;  /* Màu của thanh cuộn khi di chuột qua */
+}
+
+/* Thiết lập cho Firefox */
+
+.background {  /* Định nghĩa lớp background */
+    position: sticky;  /* Vị trí dính vào viewport khi cuộn */
+    width: 100vw;  /* Chiều rộng 100% của viewport */
+    top: 0;  /* Căn trên */
+    left: 0;  /* Căn trái */
+    background: rgb(2,0,36);  /* Màu nền RGB */
+    background: linear-gradient(90deg, rgba(2,0,36,1) 22%, rgba(9,9,121,1) 100%);  /* Gradient nền */
+    overflow: hidden;  /* Ẩn phần tràn */
+}
+
+.background > span {  /* Áp dụng cho tất cả các span con trong .background */
+    width: 20vmin;  /* Chiều rộng 20% của chiều ngắn hơn viewport */
+    height: 20vmin;  /* Chiều cao 20% của chiều ngắn hơn viewport */
+    border-radius: 20vmin;  /* Góc tròn với bán kính 20% của chiều ngắn hơn viewport */
+    backface-visibility: hidden;  /* Ẩn mặt sau của phần tử */
+    position: absolute;  /* Vị trí tuyệt đối */
+    animation: move;  /* Áp dụng animation 'move' */
+    animation-duration: 46s;  /* Thời gian của animation là 46 giây */
+    animation-timing-function: linear;  /* Animation tuyến tính */
+    animation-iteration-count: infinite;  /* Lặp vô hạn */
+}
+
+.background > span:nth-child(0) {  /* Thiết lập cho span con đầu tiên */
+    color: #3100e0;  /* Màu của span */
+    top: 81%;  /* Vị trí cách trên 81% */
+    left: 64%;  /* Vị trí cách trái 64% */
+    animation-duration: 31s;  /* Thời gian của animation là 31 giây */
+    animation-delay: -3s;  /* Độ trễ của animation là -3 giây */
+    transform-origin: 14vw -4vh;  /* Điểm gốc của transform */
+    box-shadow: 40vmin 0 5.2844021206679335vmin currentColor;  /* Đổ bóng cho span */
+}
+.background > span:nth-child(1) {
+    color: #3100e0;
+    top: 99%;
+    left: 100%;
+    animation-duration: 14s;
+    animation-delay: -28s;
+    transform-origin: -4vw -7vh;
+    box-shadow: 40vmin 0 5.117893836759611vmin currentColor;
+}
+.background > span:nth-child(2) {
+    color: #3100e0;
+    top: 88%;
+    left: 48%;
+    animation-duration: 26s;
+    animation-delay: -17s;
+    transform-origin: -19vw 4vh;
+    box-shadow: 40vmin 0 5.6096154493137815vmin currentColor;
+}
+.background > span:nth-child(3) {
+    color: #3100e0;
+    top: 80%;
+    left: 87%;
+    animation-duration: 9s;
+    animation-delay: -28s;
+    transform-origin: -24vw 12vh;
+    box-shadow: 40vmin 0 5.203070109072774vmin currentColor;
+}
+.background > span:nth-child(4) {
+    color: #3100e0;
+    top: 84%;
+    left: 66%;
+    animation-duration: 41s;
+    animation-delay: -11s;
+    transform-origin: 10vw -2vh;
+    box-shadow: -40vmin 0 5.602560920790101vmin currentColor;
+}
+.background > span:nth-child(5) {
+    color: #3100e0;
+    top: 4%;
+    left: 79%;
+    animation-duration: 41s;
+    animation-delay: -14s;
+    transform-origin: 22vw -17vh;
+    box-shadow: -40vmin 0 5.143234125626899vmin currentColor;
+}
+.background > span:nth-child(6) {
+    color: #3100e0;
+    top: 86%;
+    left: 39%;
+    animation-duration: 18s;
+    animation-delay: -2s;
+    transform-origin: -9vw -11vh;
+    box-shadow: 40vmin 0 5.762295458993923vmin currentColor;
+}
+.background > span:nth-child(7) {
+    color: #3100e0;
+    top: 11%;
+    left: 39%;
+    animation-duration: 44s;
+    animation-delay: -32s;
+    transform-origin: 5vw -2vh;
+    box-shadow: -40vmin 0 5.330148660216442vmin currentColor;
+}
+.background > span:nth-child(8) {
+    color: #3100e0;
+    top: 20%;
+    left: 1%;
+    animation-duration: 23s;
+    animation-delay: -39s;
+    transform-origin: 1vw 5vh;
+    box-shadow: -40vmin 0 5.8138532395579405vmin currentColor;
+}
+.background > span:nth-child(9) {
+    color: #3100e0;
+    top: 92%;
+    left: 17%;
+    animation-duration: 24s;
+    animation-delay: -30s;
+    transform-origin: -1vw -18vh;
+    box-shadow: 40vmin 0 5.797148180763444vmin currentColor;
+}
+.background > span:nth-child(10) {
+    color: #3100e0;
+    top: 14%;
+    left: 24%;
+    animation-duration: 21s;
+    animation-delay: -36s;
+    transform-origin: 17vw -21vh;
+    box-shadow: 40vmin 0 5.985877651206933vmin currentColor;
+}
+.background > span:nth-child(11) {
+    color: #3100e0;
+    top: 51%;
+    left: 83%;
+    animation-duration: 9s;
+    animation-delay: -33s;
+    transform-origin: -24vw -17vh;
+    box-shadow: -40vmin 0 5.837522499804863vmin currentColor;
+}
+.background > span:nth-child(12) {
+    color: #3100e0;
+    top: 68%;
+    left: 98%;
+    animation-duration: 29s;
+    animation-delay: -28s;
+    transform-origin: -20vw 14vh;
+    box-shadow: -40vmin 0 5.128105753400108vmin currentColor;
+}
+.background > span:nth-child(13) {
+    color: #3100e0;
+    top: 13%;
+    left: 20%;
+    animation-duration: 20s;
+    animation-delay: -27s;
+    transform-origin: -13vw -19vh;
+    box-shadow: 40vmin 0 5.452428380718072vmin currentColor;
+}
+.background > span:nth-child(14) {
+    color: #3100e0;
+    top: 4%;
+    left: 86%;
+    animation-duration: 22s;
+    animation-delay: -24s;
+    transform-origin: 23vw -20vh;
+    box-shadow: 40vmin 0 5.033229580966233vmin currentColor;
+}
+.background > span:nth-child(15) {
+    color: #3100e0;
+    top: 38%;
+    left: 55%;
+    animation-duration: 19s;
+    animation-delay: -31s;
+    transform-origin: -18vw -3vh;
+    box-shadow: 40vmin 0 5.320529713941375vmin currentColor;
+}
+.background > span:nth-child(16) {
+    color: #3100e0;
+    top: 4%;
+    left: 12%;
+    animation-duration: 42s;
+    animation-delay: -35s;
+    transform-origin: 10vw -4vh;
+    box-shadow: -40vmin 0 5.2667537344661595vmin currentColor;
+}
+.background > span:nth-child(17) {
+    color: #3100e0;
+    top: 6%;
+    left: 99%;
+    animation-duration: 24s;
+    animation-delay: -32s;
+    transform-origin: -19vw 17vh;
+    box-shadow: -40vmin 0 5.566125556047158vmin currentColor;
+}
+.background > span:nth-child(18) {
+    color: #3100e0;
+    top: 65%;
+    left: 76%;
+    animation-duration: 7s;
+    animation-delay: -22s;
+    transform-origin: 23vw 10vh;
+    box-shadow: 40vmin 0 5.015654594507332vmin currentColor;
+}
+.background > span:nth-child(19) {
+    color: #3100e0;
+    top: 91%;
+    left: 13%;
+    animation-duration: 42s;
+    animation-delay: -4s;
+    transform-origin: -4vw -17vh;
+    box-shadow: -40vmin 0 5.166225361367045vmin currentColor;
+}
+.background > span:nth-child(20) {
+    color: #3100e0;
+    top: 47%;
+    left: 69%;
+    animation-duration: 7s;
+    animation-delay: -30s;
+    transform-origin: -21vw 13vh;
+    box-shadow: -40vmin 0 5.409078208259118vmin currentColor;
+}
+.background > span:nth-child(21) {
+    color: #3100e0;
+    top: 76%;
+    left: 25%;
+    animation-duration: 9s;
+    animation-delay: -25s;
+    transform-origin: -17vw -24vh;
+    box-shadow: -40vmin 0 5.713726472018051vmin currentColor;
+}

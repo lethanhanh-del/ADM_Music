@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .card {
+            color: white;
+        }
+
+        .card-title > i {
+            font-size: 3rem;
+        }
+
+        .btn {
+            justify-content: left;
+        }
+
+            .btn > i {
+                margin: 0 10px;
+            }
+
+        .vstack > .card {
+            text-decoration: none;
+        }
+
+            .vstack > .card .card-body {
+                padding: 0;
+                max-height: min-content;
+            }
+
+        #upgrade {
+            justify-content: center;
+            background: linear-gradient(43deg, #4158d0, #c850c0, #ffcc70);
+        }
+
+            #upgrade:hover {
+                transform: scale(1.1);
+            }
+
+            #upgrade:active {
+                transform: scale(0.9);
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row g-3 mb-3 row-cols-lg-2 row-cols-1"
+             style="margin-top: 80px">
+            <div class="col">
+                <div class="card" style="height: 100%">
+                    <div class="row" style="height: 100%">
+                        <div class="col-auto d-flex align-items-center">
+                            <img src="https://lh3.googleusercontent.com/a/ACg8ocIjPnFxZkEq9jlkEUTJdz9CdfB7eW4bWxTTH9el1s02Kmqurkg=s96-c-rg-br100"
+                                 alt="" />
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 text-info">Lê Ngọc Cường</h5>
+                                <a href="./index.html" class="btn btn-primary">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng
+                                    xuất
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-3">Gói của bạn</h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <h1 class="card-title" style="color: khaki">FREE</h1>
+                            </div>
+                            <div class="col-6">
+                                <a href="./Premium.html"
+                                   id="upgrade"
+                                   type="button"
+                                   class="btn btn-primary"
+                                   style="width: 100%">
+                                    <i class="fa-regular fa-gem text-wrap"></i>
+                                    Dùng Premium
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 row-cols-lg-2 row-cols-1">
+            <div class="col col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3 text-center">Yêu thích</h4>
+                        <div class="vstack gap-3">
+                            <a class="card" href="https://example.com">
+                                <div class="row">
+                                    <div class="col-4 d-flex align-items-center">
+                                        <img class="rounded"
+                                             src="https://i.scdn.co/image/ab67616d00001e027fa39203a5f3e8abff2e2368"
+                                             alt="" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body text-start" style="height: 100%">
+                                            <h4 class="card-title mb-3 text-primary text-wrap">
+                                                Giấc mơ khác
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="card" href="https://example.com">
+                                <div class="row">
+                                    <div class="col-4 d-flex align-items-center">
+                                        <img class="rounded"
+                                             src="https://i.scdn.co/image/ab67616d00001e028898ca25107af040f275a749"
+                                             alt="" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body text-start" style="height: 100%">
+                                            <h4 class="card-title mb-3 text-primary text-wrap">
+                                                Bông Hoa Đẹp Nhất
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="card" href="https://example.com">
+                                <div class="row">
+                                    <div class="col-4 d-flex align-items-center">
+                                        <img class="rounded"
+                                             src="https://i.scdn.co/image/ab67616d00001e02625fb735c4fc0aa2b69a6639"
+                                             alt="" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body text-start" style="height: 100%">
+                                            <h4 class="card-title mb-3 text-primary text-wrap">
+                                                Dễ Đến Dễ Đi
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="card" href="https://example.com">
+                                <div class="row">
+                                    <div class="col-4 d-flex align-items-center">
+                                        <img class="rounded"
+                                             src="https://i.scdn.co/image/ab67616d00001e02bb0e3a4f2972a198cf701860"
+                                             alt="" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body text-start" style="height: 100%">
+                                            <h4 class="card-title mb-3 text-primary text-wrap">
+                                                Vội Vàng
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="card" href="https://example.com">
+                                <div class="row">
+                                    <div class="col-4 d-flex align-items-start">
+                                        <img class="rounded"
+                                             src="https://i.scdn.co/image/ab67616d00001e02bebe2d4754ba6abfc0051f1d"
+                                             alt="" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body text-start" style="height: 100%">
+                                            <h4 class="card-title mb-3 text-primary text-wrap">
+                                                Phải chăng em đã yêu
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-7">
+                <div class="card mb-3" style="width: 100%">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-3">Tài khoản</h4>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-primary" type="button">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Chỉnh sửa hồ sơ
+                            </a>
+                            <a class="btn btn-primary" type="button">
+                                <i class="fa-solid fa-lock"></i>
+                                Đổi mật khẩu
+                            </a>
+                            <a class="btn btn-primary" type="button">
+                                <i class="fa-solid fa-bell"></i>
+                                Cài đặt thông báo
+                            </a>
+                            <a class="btn btn-primary" type="button">
+                                <i class="fa-solid fa-eye"></i>
+                                Cài đặt quyền riêng tư
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3" style="width: 100%">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-3">Thanh toán</h4>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-primary text-start" type="button">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                Lịch sử mua hàng
+                            </a>
+                            <a class="btn btn-primary text-start" type="button">
+                                <i class="fa-solid fa-credit-card"></i>
+                                Thẻ thanh toán
+                            </a>
+                            <a class="btn btn-primary text-start" type="button">
+                                <i class="fa-solid fa-gift"></i>
+                                Mã đổi thưởng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-3">Trợ giúp</h4>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-primary text-start" type="button">
+                                <i class="fa-solid fa-question"></i>
+                                Nhóm hỗ trợ của ADM
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

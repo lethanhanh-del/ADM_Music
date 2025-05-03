@@ -1,0 +1,215 @@
+﻿@using ADM_music.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var top3NS = Session["Top3Album"] as List<Top3AlbumsByLike>;
+    var top3AB = Session["Top3Artist"] as List<Top3ArtistsByLike>;
+    var t = Session["name"] as List<string>;
+    var n = Session["total"] as List<int?>;
+}
+
+<br />  
+<div class="content-wrapper" style="">
+    <div class="container-fluid">
+
+        <!--Start Dashboard Content-->
+
+        <div class="card mt-3 mb-5">
+            <div class="card-content">
+                <div class="row row-group m-0">
+                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">@Session["SL_DH"]<span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                            <div class="progress my-3" style="height:3px;">
+                                <div class="progress-bar" style="width:55%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Tổng Số Đơn Hàng </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">@Session["Tong_Thang"]<span class="float-right"> VNĐ</span></h5>
+                            <div class="progress my-3" style="height:3px;">
+                                <div class="progress-bar" style="width:55%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Tổng Doanh Thu Year </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">@Session["Tong_Ngay"] <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                            <div class="progress my-3" style="height:3px;">
+                                <div class="progress-bar" style="width:55%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Tổng Doanh Thu Week </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">@(Session["SL_NewUser"])  <span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                            <div class="progress my-3" style="height:3px;">
+                                <div class="progress-bar" style="width:55%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Khách Hàng Mới </p><!-- Khách mới mua hàng lần đầu tiền and ngày trong tháng đó -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-8 col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        Thống Kê Doanh Số Cả Năm
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container-1">
+                            @Html.Action("Chart1", "Admin")
+                        </div>
+                    </div>
+
+                    <div class="row m-0 row-group text-center border-top border-light-3">
+                        <div class="col-12 col-lg-4">
+                            <div class="p-3">
+                                <h5 class="mb-0">45.87M</h5>
+                                <small class="mb-0">Overall Visitor <span> <i class="fa fa-arrow-up"></i> 2.43%</span></small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="p-3">
+                                <h5 class="mb-0">15:48</h5>
+                                <small class="mb-0">Visitor Duration <span> <i class="fa fa-arrow-up"></i> 12.65%</span></small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="p-3">
+                                <h5 class="mb-0">245.65</h5>
+                                <small class="mb-0">Pages/Visit <span> <i class="fa fa-arrow-up"></i> 5.62%</span></small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4 col-xl-4">
+                <div class="card">
+                    <div class="card-header">
+                        PLayList Thông Dụng
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container-2">
+                            @Html.Action("Chart2", "Admin")
+                        </div>
+                    </div><!-- thay thành tên playlist -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center">
+                            <tbody>
+                                <tr>
+                                    <td><i class="fa fa-circle text-white mr-2"></i> @t[0]</td>
+                                    <td>@n[0]</td>
+                                    <td>+55%</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-light-1 mr-2"></i>@t[1]</td>
+                                    <td>@n[1]</td>
+                                    <td>+25%</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-light-2 mr-2"></i>@t[2]</td>
+                                    <td>@n[2]</td>
+                                    <td>+15%</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-light-3 mr-2"></i>@t[3]</td>
+                                    <td>@n[3]</td>
+                                    <td>+5%</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-light-3 mr-2"></i>@t[4]</td>
+                                    <td>@n[4]</td>
+                                    <td>+5%</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-light-3 mr-2"></i>@t[5]</td>
+                                    <td>@n[5]</td>
+                                    <td>+5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!--End Row-->
+        <!--End Row-->
+        <!--End Dashboard Content-->
+        <div class="card mt-3 mb-5">
+            <div class="card-content">
+                <div class="row row-group m-0">
+                    <div class="col-12 col-lg-6 col-xl-6 border-light">
+                        <div class="card-body">
+                            <div class="card-header">
+                                Top 3 Album được yêu thích nhất
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3AB[0].Img" alt="Alternate Text" style="width: 100px; height: 100px" />
+                                        <p class="mb-0 text-white small-font ">Top 1</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3AB[1].Img" alt="Alternate Text" style="width: 100px; height: 100px " />
+                                        <p class="mb-0 text-white small-font ">Top 2</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3AB[2].Img" alt="Alternate Text" style="width:100px;height:100px" />
+                                        <p class="mb-0 text-white small-font ">Top 3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-6 border-light">
+                        <div class="card-body">
+                            <div class="card-header">
+                                Top 3 Artist được yêu thích nhất
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3NS[0].Img" alt="Alternate Text" style="width: 100px; height: 100px" />
+                                        <p class="mb-0 text-white small-font ">Top 1</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3NS[1].Img" alt="Alternate Text" style="width: 100px; height: 100px" />
+                                        <p class="mb-0 text-white small-font ">Top 2</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center">
+                                    <div class="card-body " style="text-align:center">
+                                        <img src="@top3NS[2].Img" alt="Alternate Text" style="width: 100px; height: 100px" />
+                                        <p class="mb-0 text-white small-font ">Top 3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <!--start overlay-->
+             <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+        <!-- End container-fluid-->
+
+         </div><!--End content-wrapper-->
+    </div>
+</div>  

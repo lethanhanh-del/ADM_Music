@@ -1,0 +1,131 @@
+﻿
+@using ADM_music.Models
+@model Artist
+@{
+    ViewBag.Title = "Edit_Artict";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="content-wrapper" style="height:890px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                @using (Html.BeginForm("EditArtict", "Admin", FormMethod.Post))
+                {
+                    <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                        <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                            <h2 class="tm-block-title d-inline-block">Sửa Nghệ Sĩ </h2>
+                            <input type="hidden" name="ArtistID" value="@Model.ArtistID" />
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <div class="form-group mb-3">
+                            <label for="TenBH">
+                                Tên Nghệ Sĩ
+                            </label>
+                            <input id="TenBH"
+                                   name="Name"
+                                   type="text"
+                                   class="form-control validate"
+                                   required
+                                   placeholder="Nhập tên nghệ sĩ"
+                                   value="@Model.Name" />
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                <label for="NgheSi">Giới Tính</label>
+                                <select class="custom-select tm-select-accounts"
+                                        id="ArtistID" name="Genre">
+                                    <option selected value="@Model.Genre">@Model.Genre </option>
+                                    <option value="Nam">Nam </option>
+                                    <option value="Nữ">Nữ </option>
+
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                <label for="DateOfBirth">
+                                    Ngày sinh
+                                </label>
+                                <input id="DateOfBirth"
+                                       name="DateOfBirth"
+                                       type="date"
+                                       class="form-control validate"
+                                       data-large-mode="true"
+                                       value="@Model.DateOfBirth.Value.ToString("yyyy-MM-dd")"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <div class="row">
+                                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                    <label for="Link Img">Link IMG</label>
+                                    <textarea class="form-control validate" name="Img"
+                                              rows="3" style="width:200px ; height:200px"
+                                              required id="imgLink">@Model.Img</textarea>
+                                </div>
+                                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                    <label for="img">hình bạn vừa thêm</label>
+                                    <img src="#" id="img" alt="Hình ảnh không thể tải" style="width: 200px; height: 200px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <button type="submit" class="btn btn-light px-5 btn-block text-uppercase">Edit Artict Now</button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Hàm xử lý khi tải trang
+    window.addEventListener('DOMContentLoaded', function () {
+        var imageUrl = document.getElementById('imgLink').value.trim(); // Lấy giá trị ban đầu của textarea
+        var imgElement = document.getElementById('img'); // Thẻ <img>
+
+        if (imageUrl) {
+            // Kiểm tra nếu URL là hợp lệ
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                imgElement.src = imageUrl; // Cập nhật nguồn hình ảnh
+                imgElement.style.display = "block"; // Hiển thị ảnh nếu có URL hợp lệ
+                imgElement.onerror = function () {
+                    console.log("Lỗi khi tải hình ảnh.");
+                    imgElement.style.display = "none"; // Ẩn ảnh nếu có lỗi
+                };
+            } else {
+                imgElement.style.display = "none"; // Ẩn ảnh nếu URL không hợp lệ
+            }
+        } else {
+            imgElement.style.display = "none"; // Ẩn ảnh nếu không có URL
+        }
+    });
+
+    // Hàm xử lý khi người dùng nhập vào textarea
+    document.getElementById('imgLink').addEventListener('input', function () {
+        var imageUrl = this.value.trim(); // Lấy giá trị từ textarea và loại bỏ khoảng trắng đầu/cuối
+        var imgElement = document.getElementById('img'); // Thẻ <img>
+
+        if (imageUrl) {
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                imgElement.src = imageUrl; // Cập nhật nguồn hình ảnh
+                imgElement.style.display = "block"; // Hiển thị ảnh nếu hợp lệ
+                imgElement.onerror = function () {
+                    imgElement.style.display = "none"; // Ẩn ảnh nếu có lỗi
+                };
+            } else {
+                imgElement.style.display = "none"; // Ẩn ảnh nếu URL không hợp lệ
+            }
+        } else {
+            imgElement.style.display = "none"; // Ẩn ảnh nếu không có link
+        }
+    });  
+
+</script>
+
+
+
+

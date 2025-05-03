@@ -1,0 +1,632 @@
+﻿@using ADM_music.Models
+@model Track
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        /* css thanh nhạc*/
+        /* Mặc định */
+        .like-btn i {
+            color: gray;
+        }
+
+        /* Khi được thích */
+        .like-btn.liked i {
+            color: red;
+        }
+        /*end  css thanh nhạc*/
+        .carousels {
+            margin: auto;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .categories__titles {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .carousels__containers {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .carousels-items {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousels-item {
+            flex: 25%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .card-images img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+
+        .carousels__controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .carousels__control {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 48px;
+            color: #03cafc;
+            transition: color 0.3s;
+            padding: 10px;
+        }
+
+        .carousels__control:hover {
+            color: #0290c8;
+        }
+
+        /*nút xem thêm */
+        .view-more-button {
+            font-size: 16px; /* Kích thước chữ */
+            color: gray; /* Màu chữ (có thể thay đổi) */
+            text-decoration: none; /* Không gạch chân */
+            border: none; /* Không có đường viền */
+            background: none; /* Không có màu nền */
+            cursor: pointer; /* Hiển thị con trỏ tay khi hover */
+        }
+
+            .view-more-button:hover {
+                text-decoration: underline; /* Gạch chân khi hover */
+                color: #1db954; /* Thay đổi màu chữ khi hover (có thể thay đổi) */
+            }
+        /*end Nút Xem Thêm*/
+
+    </style>
+</head>
+<body>
+    @*Thanh play nhạc*@
+    <div class="player">
+        <div class="player-left">
+            <img id="img-art" src=@Model.Img alt="Album Art" class="album-art" />
+            <div class="track-info">
+                <h3 id="music-name">@Model.Name</h3>
+                <p id="author-name">@Model.Artist.Name</p>
+            </div>
+            <div class="controls_audio">
+                <button class="like-btn" id="like-btn"><i class="fa fa-heart"></i></button>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="playback-controls_audio">
+
+                <button id="prev-btn"><i class="fa fa-backward" aria-hidden="true"></i></button>
+                <button class="play-btn" id="play-pause-btn">
+                    <i class="fa fa-play-circle"></i>
+                </button>
+                <button id="next-btn"><i class="fa fa-forward" aria-hidden="true"></i></button>
+            </div>
+            <div id="progress-area">
+                <p id="current-time">0:00</p>
+                <p id="max-duration">0:00</p>
+                <div style="clear: both"></div>
+                <div id="progress-bar">
+                    <audio id="main-audio" src="~/Content/Music/@Model._FILE"></audio>
+                    <div id="progress-played"></div>
+                </div>
+            </div>
+        </div>
+        <div class="player-right">
+            <button id="volume-btn"><i class="fa fa-volume-up"></i></button>
+            <div id="volume-bar">
+                <div id="volume-filled" style="width: 100%"></div>
+            </div>
+            <button id="fullscreen-btn"><i class="fa fa-expand"></i></button>
+        </div>
+    </div>
+
+    @*Hết play nhạc*@
+    <div class="container">
+        <aside class="carousel_auto">
+            <div class="carousel_auto__wrapper">
+                <div class="item" id="slide-0">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/6/6/0/3/6603fc065307e8b6b8daba61985daed5.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-1">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/0/c/b/a/0cbaf1bca0440f571ff76c7b5ef530db.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-2">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/7/b/8/8/7b88a8a7100d8a5a3900b32631c19e57.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-3">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/1/5/2/2/1522a21b02f3a5a79d07431072c903c3.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-4">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/f/3/4/7/f34735106b54155440d9c4fc3cf708ab.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-5">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/a/c/2/6/ac2654fe2a68eca28355f104cff72afa.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+                <div class="item" id="slide-6">
+                    <img src="https://photo-zmp3.zmdcdn.me/banner/2/2/c/b/22cb10003a18a964d1e52ea1b063e759.jpg"
+                         alt=""
+                         width="418"
+                         height="418" />
+                </div>
+            </div>
+        </aside>
+    </div>
+ 
+    @* Bài Hát Dành Cho Bạn *@
+    <section class="carousels">
+    <h2 class="categories__title">Top 10 Bài Hát Được Yêu Thích Nhất</h2><br /><br />
+    <div class="carousels__containers">
+        <div class="carousels-items" id="carouselItems">
+            @* lấy danh sách bài hát *@
+            @foreach (var item in Session["list_BaiHat"] as List<Track>)
+            {
+                <a href="@Url.Action("Index", "Home", new { trackID = item.TrackID })">
+                    <div class="carousels-item">
+                        <div class="card" style="width : 300px ; height: 500px">
+                            <figure class="card-images">
+                                <img src=@item.Img alt="Album cover for @item.Name" />
+                            </figure>
+                            <div class="card-header">
+                                <a class="music" id="FIkZoJGjpsqoJ7ey">@item.Name</a>
+                                <button class="icon-button" onclick="handleLikeUnlike(trackid)">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         display="block"
+                                         id="Hearts">
+                                        <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="card-footers">
+                                <div class="card-meta card-meta--views">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         display="block"
+                                         id="Calendars">
+                                        <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    @item.LikeNum
+                                </div>
+                                <div class="card-meta card-meta--dates">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="24"
+                                         height="24"
+                                         viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         display="block"
+                                         id="Calendars">
+                                        <rect x="2" y="4" width="20" height="18" rx="4" />
+                                        <path d="M8 2v4" />
+                                        <path d="M16 2v4" />
+                                        <path d="M2 10h20" />
+                                    </svg>
+                                    @item.ReleaseDate
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="carousels__controls">
+        <button id="prev" class="carousels__control"><i class="fas fa-chevron-left"></i></button>
+        <button id="next" class="carousels__control"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+    @*  kết thúc Bài Hát Dành Cho Bạn *@
+
+    @* Album phổ biến *@
+    <section class="carousels">
+        <h2 class="categories__title">Album phổ biến</h2>
+        <div class="carousel__container row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Session["list_Album"] as List<Album>)
+            {
+                <div class="carousel-item">
+                    <a href="@Url.Action("#", "#", new {albumID = item.AlbumID})">
+                        <img class="carousel-item__img"
+                             src="@item.Img"
+                             alt="people" />
+                        <div class="carousel-item__details">
+                            <div class="controls">
+                                <span class="fas fa-play-circle"></span>
+                                <span class="fas fa-plus-circle"></span>
+                            </div>
+                            <h5 class="carousel-item__details--title">@item.Name</h5>
+                            <h6 class="carousel-item__details--subtitle">@item.Artist.Name</h6>
+                        </div>
+                    </a>
+                </div>
+
+            }
+            <div class="text-center mt-4">
+                <a href="@Url.Action("#", "#")" class="view-more-button">
+                    Xem thêm
+                </a>
+            </div>
+        </div>
+    </section>
+    @*end Album phổ biến *@
+
+    @*Nghệ sĩ được yêu thích*@
+    <div class="container mt-5">
+        <h2 style="color: aliceblue; margin: 50px 0px">Top 3 Nghệ sĩ được yêu thích nhất</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-5">
+            @foreach (var item in Session["list_Artist"] as List<Artist>)
+            {
+                <div class="col d-flex justify-content-center">
+                    <article class="profile">
+                        <div class="profile-image">
+                            <img src=@item.Img />
+                        </div>
+                        <h2 class="profile-username">@item.Name</h2>
+                        <small class="profile-user-handle">Nghệ sĩ | @item.LikeNum ♥</small>
+                        <div class="profile-actions">
+                            <button class="btn btn--primary follow">
+                                <div class="fl">Follow</div>
+                            </button>
+                            <button class="btn btn--icon">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="profile-links">
+                            <a href="#"
+                               target="_blank"
+                               class="link link--icon">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#"
+                               target="_blank"
+                               class="link link--icon">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="#"
+                               target="_blank"
+                               class="link link--icon">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.Action("#", "#")" class="view-more-button">
+                Xem thêm
+            </a>
+        </div>
+    </div>
+    @*end Nghệ sĩ được yêu thích*@
+
+    @* album những ngày Những ngày trời thu *@
+    <div class="container_2 container mt-5">
+        <h2 style="color: aliceblue; margin: 120px 0px 70px 0px">
+            Những ngày trời thu
+        </h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+            @foreach (var item in Session["list_AlbumTRoiXanh"] as List<Album>)
+            {
+                <div class="col d-flex justify-content-center">
+                    <a href="@Url.Action("#", "#" , new {albumID = item.AlbumID})">
+                        <img class="img_2"
+                             src=@item.Img
+                             alt="" />
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.Action("#", "#")" class="view-more-button">
+                Xem thêm
+            </a>
+        </div>
+    </div>
+    @* end album những ngày Những ngày trời thu *@
+
+    @*album được nhiều like nhất*@
+    <div class="container_2 container mt-5">
+        <h2 style="color: aliceblue; margin: 120px 0px 70px 0px">
+            Top 5 Album được yêu thích nhất
+        </h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+            @foreach (var item in Session["list_AlbumLike"] as List<Album>)
+            {
+                <div class="col d-flex justify-content-center">
+                    <a href="@Url.Action("#", "#" , new {albumID = item.AlbumID})">
+                        <img class="img_2"
+                             src=@item.Img
+                             alt="" />
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.Action("#", "#")" class="view-more-button">
+                Xem thêm
+            </a>
+        </div>
+    </div>
+    @*end album*@
+
+    @*track random*@
+    <div class="container_2 container mt-5" style="margin-bottom: 150px">
+        <h2 style="color: aliceblue; margin: 120px 0px 70px 0px">
+            Hôm Nay Bạn Thế Nào?
+        </h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+            @foreach (var item in Session["list_TrackTamTrang"] as List<Track>)
+            {
+                <div class="col d-flex justify-content-center">
+                    <a href="@Url.Action("Index", "Home", new { trackID = item.TrackID })">
+                        <img class="img_2"
+                             src=@item.Img
+                             alt="" />
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="@Url.Action("#", "#")" class="view-more-button">
+                Xem thêm
+            </a>
+        </div>
+    </div>
+    @*end track random*@
+
+    <script>
+        let currentIndex = 0; // Start at the first set of items
+        const items = document.querySelectorAll('.carousels-item');
+        const totalItems = items.length;
+        const itemsToShow = 2; // Number of items to show at once
+        const carouselItemsContainer = document.getElementById('carouselItems');
+
+        function updateCarousel() {
+            // Move the carousel to show the current items
+            const offset = (currentIndex * (32 / itemsToShow));
+            carouselItemsContainer.style.transform = `translateX(-${offset}%)`;
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            // Decrement index and loop around if needed
+            currentIndex = (currentIndex - 1 + Math.ceil(totalItems / itemsToShow)) % Math.ceil(totalItems / itemsToShow);
+            updateCarousel();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            // Increment index and loop around if needed
+            currentIndex = (currentIndex + 1) % Math.ceil(totalItems / itemsToShow);
+            updateCarousel();
+        });
+
+        // js thanh nhạc
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("main-audio");
+            const imgArt = document.getElementById("img-art");
+            const musicName = document.getElementById("music-name");
+            const authorName = document.getElementById("author-name");
+            const playPauseBtn = document.getElementById("play-pause-btn");
+            const volumeBar = document.getElementById("volume-bar");
+            const volumeFilled = document.getElementById("volume-filled");
+            const progressBar = document.getElementById("progress-bar");
+            const progressPlayed = document.getElementById("progress-played");
+            const currentTimeText = document.getElementById("current-time");
+            const maxDurationText = document.getElementById("max-duration");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const likeBtn = document.getElementById("like-btn");
+
+            let isDragging = false;
+            let isRepeat = false;
+            let isMute = false;
+            let volume = 1;
+
+            const activeColor = "#1db954"; // Màu khi nút được kích hoạt
+            let isPrevActive = false;
+            let isNextActive = false;
+            let isLike = false;
+
+            // Cài đặt bài hát ban đầu
+            let currentTrackIndex = 0; // Chuyển đổi Model sang JSON
+            /* const tracks = []; // Đây sẽ là danh sách các bài hát bạn muốn phát*/
+
+            // Thêm sự kiện để phát/dừng bài hát
+            playPauseBtn.addEventListener("click", function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="fa fa-pause-circle" style = "color : #1db954"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="fa fa-play-circle"></i>';
+                }
+            });
+
+            likeBtn.addEventListener("click", function () {
+                // Toggle lớp 'liked' để đổi màu đỏ và trở lại màu mặc định
+                likeBtn.classList.toggle("liked");
+            });
+
+            // Cập nhật thời gian hiện tại
+            audio.addEventListener("timeupdate", function () {
+                if (!isDragging) {
+                    const currentTime = audio.currentTime;
+                    const progressPercent = Math.min(currentTime / audio.duration, 1);
+                    progressPlayed.style.width = `${progressPercent * 100}%`;
+                    currentTimeText.innerText = formatTime(currentTime);
+                }
+            });
+
+            // Lặp lại bài hát khi kết thúc
+            audio.addEventListener("ended", function () {
+                audio.currentTime = 0; // Đặt lại về đầu bài hát
+                audio.play(); // Phát lại bài hát
+            });
+
+            // Cài đặt maxDuration khi dữ liệu bài hát được tải
+            audio.addEventListener("loadedmetadata", function () {
+                maxDurationText.innerText = formatTime(audio.duration);
+            });
+
+            // Cho phép nhấn vào thanh tiến độ để phát từ vị trí đó
+            progressBar.addEventListener("click", function (e) {
+                const width = progressBar.clientWidth;
+                const clickX = e.offsetX;
+                const percent = clickX / width;
+                audio.currentTime = percent * audio.duration; // Chuyển đến vị trí tương ứng
+                progressPlayed.style.width = `${percent * 100}%`;
+            });
+
+            // Thay đổi âm lượng
+            volumeBar.addEventListener("click", function (e) {
+                const width = volumeBar.clientWidth;
+                const offsetX = e.clientX - volumeBar.getBoundingClientRect().left;
+                let percent = Math.min(offsetX / width, 1);
+                audio.volume = percent;
+                volumeFilled.style.width = `${percent * 100}%`;
+            });
+
+            // Chức năng định dạng thời gian
+            function formatTime(time) {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            }
+
+            // Điều chỉnh tốc độ phát khi nhấn nút "prev"
+            prevBtn.addEventListener("click", function () {
+                if (!isPrevActive) {
+                    audio.playbackRate -= 0.5; // Giảm tốc độ
+                    prevBtn.style.color = activeColor;
+                    isPrevActive = true;
+                } else {
+                    audio.playbackRate = 1.0; // Trở về tốc độ bình thường
+                    prevBtn.style.color = ""; // Trả về màu mặc định
+                    isPrevActive = false;
+                }
+            });
+
+            // Điều chỉnh tốc độ phát khi nhấn nút "next"
+            nextBtn.addEventListener("click", function () {
+                if (!isNextActive) {
+                    audio.playbackRate += 0.5; // Tăng tốc độ
+                    nextBtn.style.color = activeColor;
+                    isNextActive = true;
+                } else {
+                    audio.playbackRate = 1.0; // Trở về tốc độ bình thường
+                    nextBtn.style.color = ""; // Trả về màu mặc định
+                    isNextActive = false;
+                }
+            });
+
+
+        });
+        // end js thanh nhạc
+
+    </script>
+    <script>
+        let isLiked = false; // Trạng thái ban đầu (chưa like)
+
+        function handleLikeUnlike( trackid , artistID) {
+            if (isLiked) {
+                // Gửi yêu cầu đến action 'unlike'
+                fetch('/Home/unLike', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        if(trackid != null) {
+                            itemId: trackid, // ID của đối tượng cần unlike
+                        }
+                        else {
+                            itemId: artistID, // ID của đối tượng cần unlike
+                        }
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Unlike success:', data);
+                        isLiked = false;
+                        document.getElementById('Hearts').style.fill = 'none'; // Reset màu sắc
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                // Gửi yêu cầu đến action 'like'
+                fetch('/Home/Like', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        itemId: '123', // ID của đối tượng cần like
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Like success:', data);
+                        isLiked = true;
+                        document.getElementById('Hearts').style.fill = '#03cafc'; // Thay đổi màu sắc
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+    </script>
+</body>

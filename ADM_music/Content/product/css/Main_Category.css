@@ -1,0 +1,184 @@
+.ag-courses_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Giãn đều các mục trong hàng */
+  padding: 50px 0;
+  margin-top: 60px;
+}
+
+.ag-courses_item {
+  width: calc(25% - 20px); /* Chiều rộng cố định cho 4 cột trừ đi khoảng cách */
+  height: 200px; /* Chiều cao cố định */
+  margin: 10px; /* Khoảng cách giữa các thẻ */
+  overflow: hidden;
+  border-radius: 28px;
+  position: relative; /* Để định vị các phần tử bên trong */
+}
+
+.ag-courses-item_link {
+  display: block;
+  padding: 30px 20px;
+  background-color: #121212e6;
+  height: 100%; /* Đảm bảo thẻ chiếm toàn bộ chiều cao */
+  box-sizing: border-box; /* Để padding không làm tăng chiều cao */
+  position: relative; /* Để định vị các phần tử bên trong */
+  overflow: hidden; /* Để ẩn các phần tử bên ngoài */
+  transition: color 0.5s ease;
+  text-decoration: none; /* Loại bỏ gạch chân */
+}
+
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_date {
+  text-decoration: none;
+  color: #fff;
+}
+
+.ag-courses-item_link:hover .ag-courses-item_bg {
+  transform: scale(10); /* Tăng kích thước nền khi hover */
+}
+
+.ag-courses-item_title {
+  margin: 0 0 25px;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+  position: relative; /* Để đảm bảo văn bản nằm trên nền */
+  z-index: 2; /* Đặt trên cùng */
+}
+
+.ag-courses-item_date-box {
+  font-size: 18px;
+  color: #fff;
+  position: relative; /* Để đảm bảo văn bản nằm trên nền */
+  z-index: 2; /* Đặt trên cùng */
+  top: 110px;
+  left: 20px;
+}
+
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  background-color: rgb(220, 20, 140);
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+  z-index: 1; /* Đặt dưới cùng */
+}
+
+.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+  background-color: #3ecd5e;
+}
+
+.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+  background-color: #e44002;
+}
+
+.ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+  background-color: #952aff;
+}
+
+.ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+  background-color: rgb(96, 129, 8);
+}
+
+.ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+  background-color: #4c49ea;
+}
+
+.ag-courses_item:nth-child(7n) .ag-courses-item_bg {
+  background-color: rgb(119, 119, 119);
+}
+
+.ag-courses_item:nth-child(8n) .ag-courses-item_bg {
+  background-color: rgb(30, 50, 100);
+}
+
+.ag-courses_item:nth-child(9n) .ag-courses-item_bg {
+  background-color: rgb(230, 30, 50);
+}
+
+.ag-courses_item:nth-child(10n) .ag-courses-item_bg {
+  background-color: rgb(81, 121, 161);
+}
+
+.ag-courses_item:nth-child(11n) .ag-courses-item_bg {
+  background-color: rgb(125, 75, 50);
+}
+
+.ag-courses_item:nth-child(12n) .ag-courses-item_bg {
+  background-color: rgb(80, 55, 80);
+}
+
+.ag-courses_item:nth-child(13n) .ag-courses-item_bg {
+  background-color: rgb(141, 103, 171);
+}
+
+.ag-courses_item:nth-child(14n) .ag-courses-item_bg {
+  background: #aa4b6b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #3b8d99,
+    #6b6b83,
+    #aa4b6b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #3b8d99,
+    #6b6b83,
+    #aa4b6b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ag-courses_item:nth-child(15n) .ag-courses-item_bg {
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4a00e0,
+    #8e2de2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4a00e0,
+    #8e2de2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ag-courses_item:nth-child(16n) .ag-courses-item_bg {
+  background: #1f4037; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@media only screen and (max-width: 979px) {
+  .ag-courses_item {
+    width: calc(50% - 20px); /* Chia thành 2 cột */
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .ag-courses_item {
+    width: calc(100% - 20px); /* Chiếm toàn bộ chiều rộng */
+  }
+}
+
+img {
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  transform: rotate(20deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

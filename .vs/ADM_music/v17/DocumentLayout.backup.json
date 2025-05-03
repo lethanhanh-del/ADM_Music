@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|c:\\users\\admin\\onedrive\\desktop\\n\u0103m 3 hk1\\h\u1EC7 csdl\\doan\\adm_music\\adm_music\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\adm_music\\views\\admin\\ql_dh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\views\\admin\\ql_dh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|c:\\users\\admin\\onedrive\\desktop\\n\u0103m 3 hk1\\h\u1EC7 csdl\\doan\\adm_music\\adm_music\\views\\admin\\view_purchase.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\views\\admin\\view_purchase.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\adm_music\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|c:\\users\\admin\\onedrive\\desktop\\n\u0103m 3 hk1\\h\u1EC7 csdl\\doan\\adm_music\\adm_music\\models\\adm.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\models\\adm.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\adm_music\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4056A6E-5DA9-4558-A29B-AE299BE1F6C7}|ADM_music\\ADM_music.csproj|solutionrelative:adm_music\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "View_Purchase.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Admin\\View_Purchase.cshtml",
+              "RelativeDocumentMoniker": "ADM_music\\Views\\Admin\\View_Purchase.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Admin\\View_Purchase.cshtml",
+              "RelativeToolTip": "ADM_music\\Views\\Admin\\View_Purchase.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T17:10:47.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ADM.dbml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Models\\ADM.dbml",
+              "RelativeDocumentMoniker": "ADM_music\\Models\\ADM.dbml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Models\\ADM.dbml",
+              "RelativeToolTip": "ADM_music\\Models\\ADM.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2024-12-03T16:33:53.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QL_DH.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Admin\\QL_DH.cshtml",
+              "RelativeDocumentMoniker": "ADM_music\\Views\\Admin\\QL_DH.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Admin\\QL_DH.cshtml",
+              "RelativeToolTip": "ADM_music\\Views\\Admin\\QL_DH.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAhwD8AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T10:38:17.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "ADM_music\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "ADM_music\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAADABAAAAAAAAAAAwwGwBAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T11:44:15.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "ADM_music\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "ADM_music\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAkwDgAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T11:16:05.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ADM_music\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\n\u0103m 3 HK1\\H\u1EC7 CSDL\\DoAn\\ADM_music\\ADM_music\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ADM_music\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAALAAAAAAAAAAAAAYwMwAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-01T11:16:02.562Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+﻿@using ADM_music.Models
+@model Album
+@{
+    ViewBag.Title = "View_Albums";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <style>
+        .track__pic img {
+            height: auto;
+        }
+
+        .track__pic {
+            position: relative;
+            z-index: 1;
+        }
+
+            .track__pic:after {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: #f5f5f5;
+                content: "";
+                z-index: -1;
+            }
+
+            .track__pic img {
+                position: relative;
+                top: -50px;
+                width: calc(100% );
+                margin-left: 40px;
+                height: 502px;
+            }
+
+        .track {
+            padding-top: 120px;
+            padding-bottom: 40px;
+            overflow: hidden;
+        }
+
+            .track .section-title {
+                margin-bottom: 105px;
+            }
+
+        .track__content {
+            height: 502px;
+            overflow-y: auto;
+        }
+
+        .track__all {
+            text-align: right;
+            margin-bottom: 100px;
+        }
+
+
+        .single_player_container {
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+            .single_player_container:last-child {
+                margin-bottom: 0;
+            }
+
+            .single_player_container h4 {
+                font-size: 26px;
+                color: #111111;
+                font-weight: 700;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+            }
+    </style>
+
+
+</head>
+<div class="pb-4">
+    <!-- Track Section Begin -->
+    <section class="track spad" style="height:890px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="section-title">
+                        <h1>@Model.Name</h1>
+                        <div class="d-flex justify-content-sm-between">
+                            <h5>Ra mắt ngày: @Model.ReleaseDate.Value.Date.ToString(@"dd/MM/yyyy")</h5>
+                            <h5>Số lượt yêu thích: @Model.LikeNum ♥</h5>
+                        </div>
+                        <div class="d-flex justify-content-sm-between">
+                            <h5>Thể loại: @Model.Genre</h5>
+                            <h5>Giá bán: @Model.Price VNĐ</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 p-0">
+                    <div class="track__content nice-scroll">
+                        @foreach (var item in Session["lst_song_ab"] as List<GetSongsInAlbumResult>)
+                        {
+                            <div class="row " style="width: 100%; overflow-x: hidden;">
+                                <div class="col-xl-2">
+                                    <img style="width:100px;height:100px" src="@item.Img" alt="Alternate Text" />
+                                </div>
+                                <div class="col-xl-10  align-items-lg-center" >
+                                    <div class="single_player_container ">
+                                        <p class="d-flex justify-content-between">
+                                            @item.TrackName
+                                        <!-- Kiểm tra Duration có giá trị không -->
+                                        <span class="">
+                                            @if (item.Duration.HasValue)
+                                            {
+                                                @item.Duration.Value.ToString(@"mm\:ss")
+                                            }
+                                            else
+                                            {
+                                                @:"Không xác định"
+                                            }
+                                        </span>
+                                        </p>
+
+
+                                        <p  class="d-flex justify-content-between">
+                                            @if (item.ReleaseDate.HasValue)
+                                            {
+                                                @item.ReleaseDate.Value.Date.ToString(@"dd/MM/yyyy")
+                                            }
+                                            else
+                                            {
+                                                @:"Không xác định"
+                                            }
+                                        <span class="">@item.LikeNum ♥</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                        }
+
+                    </div>
+                </div>
+                <div class="col-lg-5 p-0">
+                    <div class="track__pic">
+                        <img src="@Model.Img" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Track Section End -->
+</div>

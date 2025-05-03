@@ -1,0 +1,51 @@
+﻿@using ADM_music.Models;
+@model int[]
+@{
+    var t = Session["name_chart2"] as List<string>;
+    if (t == null || t.Count < 6)
+    {
+        <p>Dữ liệu không đủ.</p>
+    }
+    else
+    {
+        <canvas id="chart2"></canvas>
+    }
+}
+<canvas id="chart2"></canvas>
+<script src="~/Content/admin//plugins/Chart.js/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("chart2").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["@t[0]", "@t[1]", "@t[2]", "@t[3]","@t[4]","@t[5]"],
+            datasets: [{
+                backgroundColor: [
+                    "#ffffff",
+                    "rgba(255, 255, 255, 0.85)",
+                    "rgba(255, 255, 255, 0.70)",
+                    "rgba(255, 255, 255, 0.55)",
+                    "rgba(255, 255, 255, 0.40)",
+                    "rgba(255, 255, 255, 0.25)",
+                ],
+                data: [@string.Join(",", Model)],
+                borderWidth: [0, 0, 0, 0,0,0]
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                position: "bottom",
+                display: false,
+                labels: {
+                    fontColor: '#ddd',
+                    boxWidth: 15
+                }
+            }
+            ,
+            tooltips: {
+                displayColors: false
+            }
+        }
+    });
+</script>

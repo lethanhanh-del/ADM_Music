@@ -1,0 +1,552 @@
+/* Base styles */
+.navbar {
+  width: 100%; /* Chiều rộng 100% */
+  box-shadow: 0 1px 4px rgb(146 161 176 / 15%); /* Đổ bóng cho thanh navbar */
+  z-index: 99; /* Xác định thứ tự xếp lớp */
+  position: fixed; /* Định vị cố định */
+  background: rgba(255, 255, 255, 0.135); /* Màu nền với độ trong suốt */
+  -webkit-backdrop-filter: blur(1px); /* Hiệu ứng mờ nền (dành cho trình duyệt Webkit) */
+  backdrop-filter: blur(1px); /* Hiệu ứng mờ nền */
+  transition: top 0.3s; /* Hiệu ứng chuyển cảnh khi thanh menu bị ẩn */
+  opacity: 1; /* Độ mờ */
+}
+
+.navbar.hidden {
+  top: -50px; /* Vị trí trên cùng của navbar khi bị ẩn */
+}
+
+.nav-container {
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  height: 62px; /* Chiều cao của container */
+  position: relative; /* Định vị tương đối */
+}
+
+.navbar .menu-items {
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+}
+
+.navbar .nav-container li {
+  list-style: none; /* Xóa kiểu danh sách */
+}
+
+.navbar .nav-container a {
+  text-decoration: none; /* Xóa gạch chân */
+  color: #171217; /* Màu chữ */
+  font-weight: 500; /* Độ đậm chữ */
+  font-size: 1.2rem; /* Kích thước chữ */
+  padding: 0.7rem; /* Khoảng cách padding */
+}
+
+.navbar .nav-container a:hover {
+  font-weight: bolder; /* Độ đậm chữ khi hover */
+}
+
+.nav-container {
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  height: 60px; /* Chiều cao của container */
+  position: relative; /* Định vị tương đối */
+}
+
+.nav-container .checkbox {
+  position: absolute; /* Định vị tuyệt đối */
+  height: 32px; /* Chiều cao của checkbox */
+  width: 32px; /* Chiều rộng của checkbox */
+  top: 20px; /* Khoảng cách từ trên xuống */
+  left: 20px; /* Khoảng cách từ trái sang */
+  z-index: 5; /* Thứ tự xếp lớp */
+  opacity: 0; /* Độ mờ */
+  cursor: pointer; /* Con trỏ chuột */
+}
+
+.nav-container .hamburger-lines {
+  display: block; /* Hiển thị dưới dạng block */
+  height: 26px; /* Chiều cao của hamburger icon */
+  width: 32px; /* Chiều rộng của hamburger icon */
+  position: absolute; /* Định vị tuyệt đối */
+  top: 17px; /* Khoảng cách từ trên xuống */
+  left: 20px; /* Khoảng cách từ trái sang */
+  z-index: 2; /* Thứ tự xếp lớp */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  flex-direction: column; /* Hướng của các phần tử con */
+  justify-content: space-between; /* Khoảng cách đều giữa các phần tử con */
+}
+
+.nav-container .hamburger-lines .line {
+  display: block; /* Hiển thị dưới dạng block */
+  height: 4px; /* Chiều cao của mỗi line */
+  width: 100%; /* Chiều rộng 100% */
+  border-radius: 10px; /* Bo tròn góc */
+  background: #d8dde0; /* Màu nền */
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%; /* Điểm gốc của phép biến đổi */
+  transition: transform 0.4s ease-in-out; /* Hiệu ứng chuyển cảnh */
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out; /* Hiệu ứng chuyển cảnh */
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%; /* Điểm gốc của phép biến đổi */
+  transition: transform 0.4s ease-in-out; /* Hiệu ứng chuyển cảnh */
+}
+
+/* SEARCH BOX */
+.form {
+  position: relative; /* Định vị tương đối */
+  margin-left: auto; /* Canh phải */
+  margin-right: auto; /* Canh trái */
+  opacity: 1; /* Độ mờ */
+}
+
+.form .fa-search {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 20px; /* Khoảng cách từ trên xuống */
+  left: 20px; /* Khoảng cách từ trái sang */
+  color: #9ca3af; /* Màu biểu tượng tìm kiếm */
+  cursor: pointer; /* Con trỏ chuột */
+}
+
+.form span {
+  position: absolute; /* Định vị tuyệt đối */
+  right: 17px; /* Khoảng cách từ phải sang */
+  top: 13px; /* Khoảng cách từ trên xuống */
+  padding: 2px; /* Khoảng cách padding */
+  border-left: 1px solid #d1d5db; /* Đường viền bên trái */
+}
+
+.left-pan {
+  padding-left: 7px; /* Khoảng cách padding bên trái */
+}
+
+.left-pan i {
+  padding-left: 10px; /* Khoảng cách padding bên trái */
+  cursor: pointer; /* Con trỏ chuột */
+  color: rgb(194, 219, 200); /* Màu biểu tượng */
+}
+
+.form-input {
+  width: 40vw; /* Chiều rộng 40% viewport width */
+  background-color: rgba(203, 213, 225, 0.523); /* Màu nền với độ trong suốt */
+  height: 55px; /* Chiều cao */
+  text-indent: 33px; /* Khoảng cách văn bản so với viền */
+  border-radius: 30px; /* Bo tròn góc */
+  opacity: 0.5; /* Độ mờ */
+}
+
+.form-input:focus {
+  box-shadow: none; /* Không có đổ bóng */
+  border: none; /* Không có đường viền */
+  background-color: black; /* Màu nền khi focus */
+  opacity: 1; /* Độ mờ */
+  color: #f0e7e7; /* Màu chữ */
+}
+
+.form-input:focus::placeholder {
+  color: #f0e7e7; /* Màu placeholder khi focus */
+}
+
+.navbar .menu-items {
+  padding-top: 20px; /* Khoảng cách padding trên */
+  background: rgba(255, 255, 255, 0.5); /* Màu nền với độ trong suốt */
+  -webkit-backdrop-filter: blur(10px); /* Hiệu ứng mờ nền (dành cho trình duyệt Webkit) */
+  backdrop-filter: blur(10px); /* Hiệu ứng mờ nền */
+  border: 1px solid rgba(255, 255, 255, 0.25); /* Đường viền */
+  border-radius: 10px; /* Bo tròn góc */
+  height: 95vh; /* Chiều cao 95% viewport height */
+  width: 100vw; /* Chiều rộng 100% viewport width */
+  transform: translate(-150%); /* Di chuyển vị trí theo trục X */
+  visibility: hidden; /* Ẩn phần tử */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  flex-direction: column; /* Hướng của các phần tử con */
+  margin-left: -40px; /* Khoảng cách margin trái */
+  transition: transform 0.5s ease-in-out; /* Hiệu ứng chuyển cảnh */
+  text-align: center; /* Căn giữa văn bản */
+  overflow-y: auto; /* Kích hoạt cuộn theo chiều dọc */
+}
+
+.logo {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 5px; /* Khoảng cách từ trên xuống */
+  right: 15px; /* Khoảng cách từ phải sang */
+  font-size: 2.2rem; /* Kích thước chữ */
+  color: #d8dde0; /* Màu chữ */
+}
+
+
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+  transform: translateX(0); /* Di chuyển vị trí theo trục X */
+  visibility: visible; /* Hiển thị phần tử */
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg); /* Xoay line1 */
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0); /* Thu nhỏ line2 theo trục Y */
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg); /* Xoay line3 */
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hidden {
+  display: none; /* Ẩn phần tử */
+}
+
+.navbar:hover {
+  opacity: 1; /* Độ mờ khi hover */
+}
+
+.about {
+  position: fixed; /* Định vị cố định */
+  z-index: 10; /* Thứ tự xếp lớp */
+  bottom: 10px; /* Khoảng cách từ dưới lên */
+  right: 10px; /* Khoảng cách từ phải sang */
+  width: 40px; /* Chiều rộng */
+  height: 40px; /* Chiều cao */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: flex-end; /* Căn phải các phần tử con */
+  align-items: flex-end; /* Căn dưới các phần tử con */
+  transition: all 0.2s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.about .bg_links {
+  width: 40px; /* Chiều rộng */
+  height: 40px; /* Chiều cao */
+  border-radius: 100%; /* Bo tròn góc */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  background-color: rgba(255, 255, 255, 0.2); /* Màu nền với độ trong suốt */
+  backdrop-filter: blur(5px); /* Hiệu ứng mờ nền */
+  position: absolute; /* Định vị tuyệt đối */
+}
+
+.about .logo {
+  width: 40px; /* Chiều rộng */
+  height: 40px; /* Chiều cao */
+  z-index: 9; /* Thứ tự xếp lớp */
+  background-image: url(https://rafaelalucas91.github.io/assets/codepen/logo_white.svg); /* Ảnh nền logo */
+  background-size: 50%; /* Kích thước ảnh nền */
+  background-repeat: no-repeat; /* Không lặp lại ảnh nền */
+  background-position: 10px 7px; /* Vị trí ảnh nền */
+  opacity: 0.9; /* Độ mờ */
+  transition: all 1s 0.2s ease; /* Hiệu ứng chuyển cảnh */
+  bottom: 0; /* Vị trí từ dưới lên */
+  right: 0; /* Vị trí từ phải sang */
+}
+
+.about .social {
+  opacity: 0; /* Độ mờ */
+  right: 0; /* Vị trí từ phải sang */
+  bottom: 0; /* Vị trí từ dưới lên */
+}
+
+.about .social .icon {
+  width: 100%; /* Chiều rộng */
+  height: 100%; /* Chiều cao */
+  background-size: 20px; /* Kích thước nền */
+  background-repeat: no-repeat; /* Không lặp lại nền */
+  background-position: center; /* Vị trí nền */
+  background-color: transparent; /* Màu nền trong suốt */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  transition: all 0.2s ease, background-color 0.4s ease; /* Hiệu ứng chuyển cảnh */
+  opacity: 0; /* Độ mờ */
+  border-radius: 100%; /* Bo tròn góc */
+}
+
+.about .social.portfolio {
+  transition: all 0.8s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.about .social.portfolio .icon {
+  background-image: url(https://rafaelalucas91.github.io/assets/codepen/link.svg); /* Ảnh nền cho icon portfolio */
+}
+
+.about .social.dribbble {
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.about .social.dribbble .icon {
+  background-image: url(https://rafaelalucas91.github.io/assets/codepen/dribbble.svg); /* Ảnh nền cho icon dribbble */
+}
+
+.about .social.linkedin {
+  transition: all 0.8s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.about .social.linkedin .icon {
+  background-image: url(https://rafaelalucas91.github.io/assets/codepen/linkedin.svg); /* Ảnh nền cho icon linkedin */
+}
+
+.about:hover {
+  width: 105px; /* Chiều rộng khi hover */
+  height: 105px; /* Chiều cao khi hover */
+  transition: all 0.6s cubic-bezier(0.64, 0.01, 0.07, 1.65); /* Hiệu ứng chuyển cảnh */
+}
+
+.about:hover .logo {
+  opacity: 1; /* Độ mờ của logo khi hover */
+  transition: all 0.6s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.about:hover .social {
+  opacity: 1; /* Độ mờ của các icon khi hover */
+}
+
+.about:hover .social .icon {
+  opacity: 0.9; /* Độ mờ của icon khi hover */
+}
+
+.about:hover .social .icon:hover {
+  background-size: 28px; /* Kích thước nền của icon khi hover */
+  background-color: transparent; /* Màu nền trong suốt khi hover */
+}
+
+.about:hover .social .icon:hover {
+  background-size: 65%; /* Kích thước nền của icon khi hover */
+  opacity: 1; /* Độ mờ của icon khi hover */
+}
+
+.about:hover .social.portfolio {
+  right: 0; /* Vị trí từ phải sang khi hover */
+  bottom: calc(100% - 40px); /* Vị trí từ dưới lên khi hover */
+  transition: all 0.3s 0s cubic-bezier(0.64, 0.01, 0.07, 1.65); /* Hiệu ứng chuyển cảnh */
+}
+
+.about:hover .social.portfolio .icon:hover {
+  background-color: #8685ef; /* Màu nền của icon portfolio khi hover */
+}
+
+.about:hover .social.dribbble {
+  bottom: calc(100% - 40px); /* Vị trí từ dưới lên khi hover */
+  right: calc(100% - 40px); /* Vị trí từ phải sang khi hover */
+  transition: all 0.3s 0.15s cubic-bezier(0.64, 0.01, 0.07, 1.65); /* Hiệu ứng chuyển cảnh */
+}
+
+.about:hover .social.dribbble .icon:hover {
+  background-color: #ea4c89; /* Màu nền của icon dribbble khi hover */
+}
+
+.about:hover .social.linkedin {
+  bottom: 0; /* Vị trí từ dưới lên khi hover */
+  right: calc(100% - 40px); /* Vị trí từ phải sang khi hover */
+  transition: all 0.3s 0.25s cubic-bezier(0.64, 0.01, 0.07, 1.65); /* Hiệu ứng chuyển cảnh */
+}
+
+.about:hover .social.linkedin .icon:hover {
+  background-color: #0077b5; /* Màu nền của icon linkedin khi hover */
+}
+
+.wrapper {
+  width: 100vw; /* Chiều rộng 100% viewport width */
+  margin: 0 auto; /* Căn giữa */
+  height: 400px; /* Chiều cao */
+  background-color: #161616; /* Màu nền */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  position: relative; /* Định vị tương đối */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    height: 700px; /* Chiều cao khi kích thước màn hình nhỏ hơn 767px */
+  }
+}
+
+.content {
+  max-width: 1024px; /* Chiều rộng tối đa */
+  width: 100%; /* Chiều rộng 100% */
+  padding: 0 4%; /* Khoảng cách padding */
+  margin: 0 auto; /* Căn giữa */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    flex-direction: column; /* Hướng của các phần tử con khi kích thước màn hình nhỏ hơn 767px */
+  }
+}
+
+.card_nav {
+  width: 100%; /* Chiều rộng 100% */
+  max-width: 300px; /* Chiều rộng tối đa */
+  min-width: 200px; /* Chiều rộng tối thiểu */
+  height: 250px; /* Chiều cao */
+  background-color: #292929; /* Màu nền */
+  margin: 10px; /* Khoảng cách margin */
+  border-radius: 10px; /* Bo tròn góc */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24); /* Đổ bóng */
+  border: 2px solid rgba(7, 7, 7, 0.12); /* Đường viền */
+  font-size: 16px; /* Kích thước chữ */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+  position: relative; /* Định vị tương đối */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  flex-direction: column; /* Hướng của các phần tử con */
+  cursor: pointer; /* Con trỏ chuột */
+}
+
+.icon {
+  margin: 0 auto; /* Căn giữa */
+  width: 100%; /* Chiều rộng 100% */
+  height: 80px; /* Chiều cao */
+  max-width: 80px; /* Chiều rộng tối đa */
+  background: linear-gradient(
+    90deg,
+    #ff7e7e 0%,
+    #ff4848 40%,
+    rgba(0, 0, 0, 0.28) 60%
+  ); /* Màu nền chuyển sắc */
+  border-radius: 100%; /* Bo tròn góc */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  color: white; /* Màu chữ */
+  transition: all 0.8s ease; /* Hiệu ứng chuyển cảnh */
+  background-position: 0px; /* Vị trí nền */
+  background-size: 200px; /* Kích thước nền */
+}
+
+.material-icons.md-18 {
+  font-size: 18px; /* Kích thước chữ */
+}
+.material-icons.md-24 {
+  font-size: 24px; /* Kích thước chữ */
+}
+.material-icons.md-36 {
+  font-size: 36px; /* Kích thước chữ */
+}
+.material-icons.md-48 {
+  font-size: 48px; /* Kích thước chữ */
+}
+
+.card_nav .title {
+  width: 100%; /* Chiều rộng 100% */
+  margin: 0; /* Khoảng cách margin */
+  text-align: center; /* Căn giữa chữ */
+  margin-top: 30px; /* Khoảng cách trên */
+  color: white; /* Màu chữ */
+  font-weight: 600; /* Độ đậm chữ */
+}
+
+.card_nav .text {
+  width: 80%; /* Chiều rộng 80% */
+  margin: 0 auto; /* Căn giữa */
+  font-size: 13px; /* Kích thước chữ */
+  text-align: center; /* Căn giữa chữ */
+  margin-top: 20px; /* Khoảng cách trên */
+  color: white; /* Màu chữ */
+  font-weight: 200; /* Độ đậm chữ */
+  letter-spacing: 2px; /* Khoảng cách giữa các chữ */
+  opacity: 0; /* Độ mờ */
+  max-height: 0; /* Chiều cao tối đa */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.card_nav:hover {
+  height: 270px; /* Chiều cao khi hover */
+}
+
+.card_nav:hover .info {
+  height: 90%; /* Chiều cao của info khi hover */
+}
+
+.card_nav:hover .text {
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+  opacity: 1; /* Độ mờ khi hover */
+  max-height: 40px; /* Chiều cao tối đa khi hover */
+}
+
+.card_nav:hover .icon {
+  background-position: -120px; /* Vị trí nền khi hover */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+.card_nav:hover .icon i {
+  background: linear-gradient(90deg, #ff7e7e, #ff4848); /* Màu nền chuyển sắc khi hover */
+  -webkit-background-clip: text; /* Clip nền vào chữ */
+  -webkit-text-fill-color: transparent; /* Chữ trong suốt */
+  opacity: 1; /* Độ mờ */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển cảnh */
+}
+
+/* Responsive Adjustments */
+
+/* Navbar */
+@media screen and (max-width: 767px) {
+  .navbar .menu-items {
+    flex-direction: column; /* Hướng của các phần tử con khi màn hình nhỏ hơn 767px */
+    height: 100vh; /* Chiều cao 100% viewport height */
+  }
+
+  .navbar .nav-container a {
+    font-size: 1rem; /* Kích thước chữ khi màn hình nhỏ hơn 767px */
+    padding: 0.5rem; /* Khoảng cách padding khi màn hình nhỏ hơn 767px */
+  }
+
+  .nav-container .hamburger-lines {
+    top: 15px; /* Vị trí từ trên xuống khi màn hình nhỏ hơn 767px */
+    left: 15px; /* Vị trí từ trái sang khi màn hình nhỏ hơn 767px */
+  }
+
+  .form-input {
+    width: 40vw; /* Chiều rộng 80% viewport width khi màn hình nhỏ hơn 767px */
+  }
+}
+
+/* Wrapper */
+@media screen and (max-width: 767px) {
+  .wrapper {
+    height: 600px; /* Chiều cao khi màn hình nhỏ hơn 767px */
+  }
+}
+
+/* Content */
+@media screen and (max-width: 767px) {
+  .content {
+    flex-direction: column; /* Hướng của các phần tử con khi màn hình nhỏ hơn 767px */
+  }
+}
+
+/* Card Navigation */
+@media screen and (max-width: 767px) {
+  .card_nav {
+    width: 90%; /* Chiều rộng 90% */
+    max-width: none; /* Không có chiều rộng tối đa */
+    height: auto; /* Chiều cao tự động */
+    padding: 20px; /* Khoảng cách padding */
+  }
+
+  .card_nav .title {
+    font-size: 1.2rem; /* Kích thước chữ khi màn hình nhỏ hơn 767px */
+  }
+
+  .card_nav .text {
+    font-size: 1rem; /* Kích thước chữ khi màn hình nhỏ hơn 767px */
+    margin-top: 10px; /* Khoảng cách trên khi màn hình nhỏ hơn 767px */
+  }
+
+  .icon {
+    width: 60px; /* Chiều rộng khi màn hình nhỏ hơn 767px */
+    height: 60px; /* Chiều cao khi màn hình nhỏ hơn 767px */
+  }
+}
+
+.hidden:hover .logo{
+  font-weight: 500;
+}

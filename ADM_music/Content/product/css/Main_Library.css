@@ -1,0 +1,287 @@
+/* Import font từ Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
+
+/* Cài đặt cho lớp card */
+.card {
+  --size: clamp(300px, 50vmin, 600px); /* Kích thước card được kẹp trong khoảng từ 300px đến 600px, tuỳ thuộc vào kích thước màn hình */
+  width: var(--size); /* Chiều rộng card */
+  position: relative; /* Định vị tương đối */
+  border-radius: 2rem; /* Bo tròn góc */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  background-color: transparent; /* Màu nền trong suốt */
+}
+
+/* Cài đặt cho hình ảnh bên trong card */
+.card__img {
+  width: 100%; /* Chiều rộng hình ảnh */
+  height: 100%; /* Chiều cao hình ảnh */
+  object-fit: cover; /* Chỉnh kích thước hình ảnh để phù hợp với khung */
+  transform: scale(calc(1 + (var(--hover, 0) * 0.25)))
+    rotate(calc(var(--hover, 0) * -5deg)); /* Hiệu ứng phóng to và xoay khi hover */
+  transition: transform 0.7s; /* Thời gian chuyển đổi hiệu ứng */
+}
+
+/* Cài đặt cho phần footer của card */
+.card__footer {
+  position: absolute; /* Định vị tuyệt đối */
+  bottom: 0; /* Căn dưới cùng */
+  left: 0; /* Căn trái */
+  width: 100%; /* Chiều rộng 100% */
+  display: grid; /* Sử dụng grid layout */
+  background: rgb(0,0,0);
+  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6980042016806722) 21%, rgba(0,0,0,0) 40%, rgba(244,229,229,0) 100%); /* Hiệu ứng gradient cho nền */
+  height: 100%; /* Chiều cao 100% */
+  align-content: end; /* Căn cuối nội dung */
+  color: aliceblue; /* Màu chữ aliceblue */
+  padding-left: 10px; /* Khoảng cách padding bên trái */
+}
+
+/* Cài đặt cho nút hành động trên card */
+.card__action {
+  position: absolute; /* Định vị tuyệt đối */
+  aspect-ratio: 1; /* Tỷ lệ khung hình 1:1 */
+  width: calc(var(--size) * 0.15); /* Chiều rộng là 15% kích thước card */
+  bottom: 30%; /* Căn dưới 30% */
+  right: 1.5rem; /* Căn phải 1.5rem */
+  transform: translateY(50%) translateY(calc((var(--size) * 0.4)))
+    translateY(calc(var(--hover, 0) * (var(--size) * -0.3))); /* Hiệu ứng di chuyển theo chiều dọc khi hover */
+  background: purple; /* Màu nền tím */
+  display: grid; /* Sử dụng grid layout */
+  place-items: center; /* Căn giữa nội dung */
+  border-radius: 2rem; /* Bo tròn góc */
+  background: hsl(150, 90%, 35%); /* Màu nền với hệ màu HSL */
+  transition: transform 0.7s; /* Thời gian chuyển đổi hiệu ứng */
+}
+
+/* Cài đặt cho hiệu ứng hover và focus-visible trên card */
+.card:is(:hover, :focus-visible) {
+  --hover: 1; /* Đặt biến --hover bằng 1 khi hover hoặc focus-visible */
+}
+
+/* Cài đặt cho các tiêu đề trong footer của card */
+.card__footer h5, .card__footer h6 {
+  transform: translateY(-50%) translateY(calc((var(--size) * 0)))
+    translateY(calc(var(--hover, 0) * (var(--size) * 0.3))); /* Hiệu ứng di chuyển theo chiều dọc khi hover */
+  transition: transform 0.7s; /* Thời gian chuyển đổi hiệu ứng */
+}
+
+/* Cài đặt cho card nghệ sĩ */
+.card_artist {
+  position: relative; /* Định vị tương đối */
+  width: 300px; /* Chiều rộng card */
+  height: 400px; /* Chiều cao card */
+  margin: 1em; /* Khoảng cách margin */
+  background: rgba(255, 255, 255, 0.05); /* Màu nền trong suốt 5% */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+  border-radius: 15px; /* Bo tròn góc */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  flex-direction: column; /* Sắp xếp nội dung theo cột */
+  backdrop-filter: blur(40px); /* Hiệu ứng làm mờ nền phía sau */
+  border: solid 2px transparent; /* Đường viền trong suốt */
+  background-clip: padding-box; /* Cắt nền theo padding box */
+  box-shadow: 0px 10px 10px rgba(46, 54, 68, 0.03); /* Hiệu ứng đổ bóng */
+}
+
+/* Cài đặt cho nội dung bên trong card_artist */
+.card_artist .content {
+  position: relative; /* Định vị tương đối */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  flex-direction: column; /* Sắp xếp nội dung theo cột */
+  transition: 1s; /* Thời gian chuyển đổi hiệu ứng */
+}
+
+/* Cài đặt cho hình ảnh bên trong card_artist */
+.card_artist .content .img {
+  position: relative; /* Định vị tương đối */
+  width: 200px; /* Chiều rộng hình ảnh */
+  height: 200px; /* Chiều cao hình ảnh */
+  border-radius: 50%; /* Bo tròn hình ảnh */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  border: 10px solid rgba(0, 0, 0, 0.25); /* Đường viền với độ mờ 25% */
+}
+
+/* Cài đặt cho hình ảnh bên trong lớp img */
+.card_artist .content .img img {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 0; /* Căn trên */
+  left: 0; /* Căn trái */
+  width: 100%; /* Chiều rộng 100% */
+  height: 100%; /* Chiều cao 100% */
+  object-fit: cover; /* Chỉnh kích thước hình ảnh để phù hợp với khung */
+}
+
+/* Cài đặt cho tiêu đề bên trong card_artist */
+.card_artist .content .cardContent h3 {
+  color: #fff; /* Màu chữ trắng */
+  text-transform: uppercase; /* Chuyển chữ thường thành chữ hoa */
+  letter-spacing: 2px; /* Khoảng cách giữa các chữ */
+  font-weight: 500; /* Độ đậm chữ */
+  font-size: 18px; /* Kích thước chữ */
+  text-align: center; /* Căn giữa văn bản */
+  margin: 20px 0 10px; /* Khoảng cách margin */
+  line-height: 1.1em; /* Chiều cao dòng */
+}
+
+/* Cài đặt cho span bên trong thẻ h3 */
+.card_artist .content .cardContent h3 span {
+  font-size: 12px; /* Kích thước chữ */
+  font-weight: 300; /* Độ đậm chữ */
+  text-transform: initial; /* Không chuyển đổi chữ */
+}
+
+/* Cài đặt cho danh sách xã hội bên trong card_artist */
+.card_artist .sci {
+  position: absolute; /* Định vị tuyệt đối */
+  bottom: 50px; /* Căn dưới 50px */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  flex-direction: row; /* Sắp xếp nội dung theo hàng */
+  list-style-type: none; /* Bỏ dấu đầu dòng */
+  padding: 0px; /* Bỏ padding */
+}
+
+/* Cài đặt cho các mục trong danh sách xã hội */
+.card_artist .sci li {
+  margin: 0 10px; /* Khoảng cách margin */
+  transform: translateY(40px); /* Di chuyển theo chiều dọc */
+  opacity: 0; /* Độ mờ bằng 0 */
+  transition: 0.5s; /* Thời gian chuyển đổi hiệu ứng */
+  transition-delay: calc(0.1s * var(--i)); /* Thời gian trễ cho chuyển đổi */
+}
+
+/* Cài đặt cho liên kết bên trong danh sách xã hội */
+.card_artist .sci li a {
+  color: gray; /* Màu chữ xám */
+  font-size: 24px; /* Kích thước chữ */
+}
+
+/* Hiệu ứng khi hover trên card_artist */
+.card_artist:hover .content {
+  transform: translateY(-40px); /* Di chuyển nội dung lên 40px khi hover */
+}
+
+/* Hiệu ứng khi hover trên danh sách xã hội */
+.card_artist:hover .sci li {
+  transform: translateY(0px); /* Đặt lại vị trí ban đầu */
+  opacity: 1; /* Đặt độ mờ bằng 1 */
+}
+
+/* Hiệu ứng khi hover trên card_artist */
+.card_artist:hover:before {
+  opacity: 1; /* Đặt độ mờ bằng 1 */
+}
+
+/* Cài đặt cho pseudo-element before */
+.card_artist:before {
+  background: #000000; /* Màu nền đen */
+  background: -webkit-linear-gradient(to right, #434343, #000000); /* Gradient từ phải sang trái cho các trình duyệt WebKit */
+  background: linear-gradient(to right, #434343, #000000); /* Gradient từ phải sang trái */
+  border-radius: inherit; /* Bo tròn theo card */
+  content: ""; /* Nội dung rỗng */
+  inset: 0px; /* Vị trí từ trên, phải, dưới, trái đều bằng 0 */
+  opacity: 0; /* Độ mờ bằng 0 */
+  position: absolute; /* Định vị tuyệt đối */
+  transition: opacity 400ms; /* Thời gian chuyển đổi độ mờ */
+  z-index: 0; /* Đặt z-index bằng 0 */
+}
+
+/* Cài đặt cho hộp playlist */
+.box {
+  background: white; /* Màu nền trắng */
+  border-radius: 20px; /* Bo tròn góc */
+  display: grid; /* Sử dụng grid layout */
+  grid-template-columns: 64px 1fr; /* Định nghĩa cột grid */
+  grid-template-rows: max-content max-content; /* Định nghĩa hàng grid */
+  position: relative; /* Định vị tương đối */
+  padding: 0px; /* Bỏ padding */
+  overflow: hidden; /* Ẩn nội dung tràn */
+}
+
+/* Cài đặt cho biểu tượng bên trong box */
+.box-icon {
+  display: grid; /* Sử dụng grid layout */
+  place-items: center; /* Căn giữa nội dung */
+}
+
+/* Cài đặt cho nhãn bên trong box */
+.box-label {
+  height: 64px; /* Chiều cao 64px */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  padding-left: 16px; /* Khoảng cách padding bên trái */
+  font-size: 14px; /* Kích thước chữ */
+  letter-spacing: 0.125em; /* Khoảng cách giữa các chữ */
+  white-space: nowrap; /* Không cho phép xuống dòng */
+}
+
+/* Cài đặt cho tiêu đề bên trong box */
+.box-title {
+  white-space: nowrap; /* Không cho phép xuống dòng */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  writing-mode: vertical-rl; /* Chế độ viết dọc-rl */
+  text-orientation: mixed; /* Định hướng văn bản kết hợp */
+  font-size: 24px; /* Kích thước chữ */
+  padding-top: 16px; /* Khoảng cách padding phía trên */
+}
+
+/* Cài đặt cho hình ảnh bên trong box */
+.box-image {
+  border-radius: 18px 0 18px 0; /* Bo tròn góc */
+  overflow: hidden; /* Ẩn nội dung tràn */
+}
+
+/* Cài đặt cho hình ảnh bên trong lớp box-image */
+.box-image img {
+  width: 100%; /* Chiều rộng 100% */
+  display: block; /* Hiển thị theo block */
+}
+
+/* Cài đặt cho nút studio bên trong box */
+.studio-button {
+  position: absolute; /* Định vị tuyệt đối */
+  bottom: 12px; /* Căn dưới 12px */
+  right: 16px; /* Căn phải 16px */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  background: #da084b; /* Màu nền */
+  color: white; /* Màu chữ */
+  padding: 8px 10px; /* Khoảng cách padding */
+  border-radius: 50px; /* Bo tròn góc */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); /* Hiệu ứng đổ bóng */
+  transition: 0.35s ease all; /* Thời gian chuyển đổi hiệu ứng */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  max-width: 45px; /* Chiều rộng tối đa */
+  cursor: pointer; /* Con trỏ chuột */
+}
+
+/* Cài đặt cho biểu tượng bên trong nút studio */
+.studio-button-icon {
+  position: relative; /* Định vị tương đối */
+}
+
+/* Cài đặt cho nhãn bên trong nút studio */
+.studio-button-label {
+  white-space: nowrap; /* Không cho phép xuống dòng */
+  padding: 0 8px; /* Khoảng cách padding */
+  opacity: 0; /* Độ mờ bằng 0 */
+  transform: translateX(10px); /* Di chuyển theo chiều ngang */
+  transition: 0.25s ease all; /* Thời gian chuyển đổi hiệu ứng */
+}
+
+/* Hiệu ứng khi hover trên box */
+.box:hover .studio-button {
+  max-width: 100%; /* Chiều rộng tối đa là 100% */
+}
+
+/* Hiệu ứng khi hover trên nhãn của nút studio */
+.box:hover .studio-button-label {
+  opacity: 1; /* Đặt độ mờ bằng 1 */
+  transform: translateX(0); /* Đặt lại vị trí ban đầu */
+  transition: 0.25s 0.1s ease-in opacity, 0.15s 0.1s cubic-bezier(.175, .885, .32, 1.275) transform; /* Thời gian chuyển đổi hiệu ứng */
+}

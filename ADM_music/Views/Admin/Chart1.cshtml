@@ -1,0 +1,58 @@
+﻿@using ADM_music.Models
+@model List<GetMonthlyTotalResult>
+<canvas id="chart1"></canvas>
+<script src="~/Content/admin//plugins/Chart.js/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById('chart1').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [@Model[0].Thang,@Model[1].Thang, @Model[2].Thang, @Model[3].Thang, @Model[4].Thang, @Model[5].Thang, @Model[6].Thang, @Model[7].Thang, @Model[8].Thang, @Model[9].Thang,@Model[10].Thang,@Model[11].Thang],
+            datasets: [{
+                label: 'DoanhThu',
+                data: [@Model[0].TongTien,@Model[1].TongTien, @Model[2].TongTien, @Model[3].TongTien, @Model[4].TongTien, @Model[5].TongTien, @Model[6].TongTien, @Model[7].TongTien, @Model[8].TongTien, @Model[9].TongTien,@Model[10].TongTien,@Model[11].TongTien],
+                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                borderColor: "white",
+                pointRadius: "0",
+                borderWidth: 2
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+                labels: {
+                    fontColor: '#ddd',
+                    boxWidth: 40
+                }
+            },
+            tooltips: {
+                displayColors: false
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        fontColor: '#ddd'
+                    },
+                    gridLines: {
+                        display: true,
+                        color: "rgba(221, 221, 221, 0.08)"
+                    },
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        fontColor: '#ddd'
+                    },
+                    gridLines: {
+                        display: true,
+                        color: "rgba(221, 221, 221, 0.08)"
+                    },
+                }]
+            }
+
+        }
+    });
+</script>

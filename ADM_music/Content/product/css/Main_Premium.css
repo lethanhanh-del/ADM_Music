@@ -1,0 +1,196 @@
+/* Import font từ Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
+
+/* Cài đặt cho toàn bộ body */
+body {
+  background-image: url("https://zingmp3.vn/vip/images/background/home.png"); /* Đặt ảnh nền cho trang web */
+  color: aliceblue; /* Màu chữ là màu aliceblue */
+  line-height: 1.5; /* Chiều cao dòng chữ */
+  min-height: 100vh; /* Chiều cao tối thiểu là 100% chiều cao khung nhìn */
+  display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử */
+  align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+  justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+  margin-top: 200px; /* Khoảng cách từ trên xuống */
+  margin-bottom: 100px; /* Khoảng cách từ dưới lên */
+}
+
+/* Cài đặt cho thẻ h1 */
+h1 {
+  background: 50% 100% / 50% 50% no-repeat
+    radial-gradient(ellipse at bottom, #fff, transparent, transparent); /* Đặt nền với gradient */
+  -webkit-background-clip: text; /* Clip nền vào văn bản cho trình duyệt webkit */
+  background-clip: text; /* Clip nền vào văn bản */
+  color: transparent; /* Màu chữ trong suốt */
+  font-size: 6vw; /* Kích thước chữ là 6% của chiều rộng khung nhìn */
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+    glow 20500ms linear infinite 2000ms; /* Thêm hiệu ứng hoạt hình cho chữ */
+}
+
+/* Định nghĩa animation reveal */
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px; /* Giãn khoảng cách chữ */
+  }
+  100% {
+    background-size: 300% 300%; /* Tăng kích thước nền */
+  }
+}
+
+/* Định nghĩa animation glow */
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff; /* Thêm bóng mờ cho chữ */
+  }
+}
+
+/* Cài đặt cho lớp info */
+.info {
+  opacity: 0; /* Độ mờ bằng 0 */
+  animation: fadeIn 2s forwards 3s; /* Thêm hiệu ứng fadeIn */
+  font-size: 2vw; /* Kích thước chữ là 2% của chiều rộng khung nhìn */
+  color: gray; /* Màu chữ xám */
+  width: 50vw; /* Chiều rộng là 50% của chiều rộng khung nhìn */
+  margin-top: 30px; /* Khoảng cách từ trên xuống */
+}
+
+/* Định nghĩa animation fadeIn */
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Độ mờ bằng 1 */
+  }
+}
+
+/* Cài đặt cho lớp row */
+.row {
+  margin-top: 100px; /* Khoảng cách từ trên xuống */
+}
+
+/* Cài đặt cho lớp card_ */
+.card_ {
+  background: #0f2027; /* Màu nền dự phòng */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* Gradient cho trình duyệt webkit */
+  background: linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* Gradient theo W3C */
+  border-radius: 10px; /* Bo tròn góc */
+  color: #ffffff; /* Màu chữ trắng */
+  padding: 20px 30px; /* Khoảng cách padding */
+  text-align: center; /* Căn giữa văn bản */
+  width: 100%; /* Chiều rộng 100% */
+}
+
+/* Cài đặt cho lớp badge */
+.badge {
+  background-color: #fff; /* Màu nền trắng */
+  border-radius: 5px; /* Bo tròn góc */
+  color: #3b0a63; /* Màu chữ */
+  font-size: 14px; /* Kích thước chữ */
+  font-weight: 600; /* Độ đậm chữ */
+  padding: 2px 6px; /* Khoảng cách padding */
+  vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+/* Cài đặt cho thẻ h2 */
+h2 {
+  font-size: 44px; /* Kích thước chữ */
+  font-weight: 600; /* Độ đậm chữ */
+  margin: 0; /* Khoảng cách margin */
+}
+
+/* Cài đặt cho thẻ h3 */
+h3 {
+  font-size: 20px; /* Kích thước chữ */
+  margin: 15px 0; /* Khoảng cách margin */
+  text-align: start; /* Căn trái văn bản */
+}
+
+/* Cài đặt cho thẻ p */
+p {
+  font-size: 14px; /* Kích thước chữ */
+  margin: 10px 0; /* Khoảng cách margin */
+  text-align: start; /* Căn trái văn bản */
+}
+
+/* Cài đặt cho nút subscribe-btn */
+.subscribe-btn {
+  background-color: #a959ff; /* Màu nền */
+  border: none; /* Không viền */
+  border-radius: 25px; /* Bo tròn góc */
+  color: #ffffff; /* Màu chữ */
+  cursor: pointer; /* Con trỏ chuột */
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 600; /* Độ đậm chữ */
+  padding: 10px 20px; /* Khoảng cách padding */
+  margin: 15px 0; /* Khoảng cách margin */
+  width: 100%; /* Chiều rộng 100% */
+}
+
+/* Cài đặt cho lớp benefits */
+.benefits {
+  text-align: left; /* Căn trái văn bản */
+  margin-top: 20px; /* Khoảng cách từ trên xuống */
+}
+
+/* Cài đặt cho thẻ h3 trong lớp benefits */
+.benefits h3 {
+  font-size: 14px; /* Kích thước chữ */
+  margin-bottom: 10px; /* Khoảng cách dưới */
+}
+
+/* Cài đặt cho ul trong lớp benefits */
+.benefits ul {
+  list-style: none; /* Bỏ ký hiệu danh sách */
+  padding: 0; /* Bỏ padding */
+}
+
+/* Cài đặt cho li trong lớp benefits */
+.benefits li {
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+  display: flex; /* Sử dụng flexbox để căn chỉnh */
+  font-size: 14px; /* Kích thước chữ */
+  margin-bottom: 10px; /* Khoảng cách dưới */
+}
+
+/* Cài đặt cho các icon trong lớp benefits */
+.benefits .material-icons {
+  color: #a959ff; /* Màu của icon */
+  margin-right: 10px; /* Khoảng cách phải */
+}
+
+/* Cài đặt cho lớp plus */
+.plus {
+  background: #ad5389; /* Màu nền dự phòng */
+  background: -webkit-linear-gradient(
+    to right,
+    #3c1053,
+    #ad5389
+  ); /* Gradient cho trình duyệt webkit */
+  background: linear-gradient(
+    to right,
+    #3c1053,
+    #ad5389
+  ); /* Gradient theo W3C */
+}
+
+/* Cài đặt cho lớp premium */
+.premium {
+  background: #ba8b02; /* Màu nền dự phòng */
+  background: -webkit-linear-gradient(
+    to right,
+    #181818,
+    #ba8b02
+  ); /* Gradient cho trình duyệt webkit */
+  background: linear-gradient(
+    to right,
+    #181818,
+    #ba8b02
+  ); /* Gradient theo W3C */
+}

@@ -1,0 +1,179 @@
+﻿
+@using ADM_music.Models;
+@model Track
+<head>
+    <style>
+        /* Mặc định */
+        .like-btn i {
+            color: gray;
+        }
+
+        /* Khi được thích */
+        .like-btn.liked i {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="player">
+        <div class="player-left">
+            <img id="img-art" src=@Model.Img alt="Album Art" class="album-art" />
+            <div class="track-info">
+                <h3 id="music-name">@Model.Name</h3>
+                <p id="author-name">@Model.Artist.Name</p>
+            </div>
+            <div class="controls_audio">
+                <button class="like-btn" id="like-btn"><i class="fa fa-heart"></i></button>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="playback-controls_audio">
+                
+                <button id="prev-btn"><i class="fa fa-backward" aria-hidden="true"></i></button>
+                <button class="play-btn" id="play-pause-btn">
+                    <i class="fa fa-play-circle"></i>
+                </button>
+                <button id="next-btn"><i class="fa fa-forward" aria-hidden="true"></i></button>
+            </div>
+            <div id="progress-area">
+                <p id="current-time">0:00</p>
+                <p id="max-duration">0:00</p>
+                <div style="clear: both"></div>
+                <div id="progress-bar">
+                    <audio id="main-audio" src="~/Content/Music/@Model._FILE"></audio>
+                    <div id="progress-played"></div>
+                </div>
+            </div>
+        </div>
+        <div class="player-right">
+            <button id="volume-btn"><i class="fa fa-volume-up"></i></button>
+            <div id="volume-bar">
+                <div id="volume-filled" style="width: 100%"></div>
+            </div>
+            <button id="fullscreen-btn"><i class="fa fa-expand"></i></button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("main-audio");
+            const imgArt = document.getElementById("img-art");
+            const musicName = document.getElementById("music-name");
+            const authorName = document.getElementById("author-name");
+            const playPauseBtn = document.getElementById("play-pause-btn");
+            const volumeBar = document.getElementById("volume-bar");
+            const volumeFilled = document.getElementById("volume-filled");
+            const progressBar = document.getElementById("progress-bar");
+            const progressPlayed = document.getElementById("progress-played");
+            const currentTimeText = document.getElementById("current-time");
+            const maxDurationText = document.getElementById("max-duration");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const likeBtn = document.getElementById("like-btn");
+
+            let isDragging = false;
+            let isRepeat = false;
+            let isMute = false;
+            let volume = 1;
+
+            const activeColor = "#1db954"; // Màu khi nút được kích hoạt
+            let isPrevActive = false;
+            let isNextActive = false;
+            let isLike = false;
+
+            // Cài đặt bài hát ban đầu
+            let currentTrackIndex = 0; // Chuyển đổi Model sang JSON
+           /* const tracks = []; // Đây sẽ là danh sách các bài hát bạn muốn phát*/
+
+            // Thêm sự kiện để phát/dừng bài hát
+            playPauseBtn.addEventListener("click", function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="fa fa-pause-circle" style = "color : #1db954"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="fa fa-play-circle"></i>';
+                }
+            });
+
+            likeBtn.addEventListener("click", function () {
+                // Toggle lớp 'liked' để đổi màu đỏ và trở lại màu mặc định
+                likeBtn.classList.toggle("liked");
+            });
+
+            // Cập nhật thời gian hiện tại
+            audio.addEventListener("timeupdate", function () {
+                if (!isDragging) {
+                    const currentTime = audio.currentTime;
+                    const progressPercent = Math.min(currentTime / audio.duration, 1);
+                    progressPlayed.style.width = `${progressPercent * 100}%`;
+                    currentTimeText.innerText = formatTime(currentTime);
+                }
+            });
+
+            // Lặp lại bài hát khi kết thúc
+            audio.addEventListener("ended", function () {
+                audio.currentTime = 0; // Đặt lại về đầu bài hát
+                audio.play(); // Phát lại bài hát
+            });
+
+            // Cài đặt maxDuration khi dữ liệu bài hát được tải
+            audio.addEventListener("loadedmetadata", function () {
+                maxDurationText.innerText = formatTime(audio.duration);
+            });
+
+            // Cho phép nhấn vào thanh tiến độ để phát từ vị trí đó
+            progressBar.addEventListener("click", function (e) {
+                const width = progressBar.clientWidth;
+                const clickX = e.offsetX;
+                const percent = clickX / width;
+                audio.currentTime = percent * audio.duration; // Chuyển đến vị trí tương ứng
+                progressPlayed.style.width = `${percent * 100}%`;
+            });
+
+            // Thay đổi âm lượng
+            volumeBar.addEventListener("click", function (e) {
+                const width = volumeBar.clientWidth;
+                const offsetX = e.clientX - volumeBar.getBoundingClientRect().left;
+                let percent = Math.min(offsetX / width, 1);
+                audio.volume = percent;
+                volumeFilled.style.width = `${percent * 100}%`;
+            });
+
+            // Chức năng định dạng thời gian
+            function formatTime(time) {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            }
+
+            // Điều chỉnh tốc độ phát khi nhấn nút "prev"
+            prevBtn.addEventListener("click", function () {
+                if (!isPrevActive) {
+                    audio.playbackRate -= 0.5; // Giảm tốc độ
+                    prevBtn.style.color = activeColor;
+                    isPrevActive = true;
+                } else {
+                    audio.playbackRate = 1.0; // Trở về tốc độ bình thường
+                    prevBtn.style.color = ""; // Trả về màu mặc định
+                    isPrevActive = false;
+                }
+            });
+
+            // Điều chỉnh tốc độ phát khi nhấn nút "next"
+            nextBtn.addEventListener("click", function () {
+                if (!isNextActive) {
+                    audio.playbackRate += 0.5; // Tăng tốc độ
+                    nextBtn.style.color = activeColor;
+                    isNextActive = true;
+                } else {
+                    audio.playbackRate = 1.0; // Trở về tốc độ bình thường
+                    nextBtn.style.color = ""; // Trả về màu mặc định
+                    isNextActive = false;
+                }
+            });
+
+
+        });
+    </script>
+</body>

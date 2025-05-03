@@ -1,0 +1,128 @@
+﻿@using ADM_music.Models
+
+@{
+    ViewBag.Title = "Add_Track";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="content-wrapper"style="height:890px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <h2 class="tm-block-title d-inline-block">Thêm Bài Hát Mới</h2>
+                    </div>
+                </div>
+                @using (Html.BeginForm("AddTrack", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <div class="form-group mb-3">
+                            <label for="TenBH">
+                                Tên Bài Hát
+                            </label>
+                            <input id="TenBH"
+                                   name="Name"
+                                   type="text"
+                                   class="form-control validate"
+                                   required />
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <div class="row">
+                                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                    <label for="Link Img">Link IMG</label>
+                                    <textarea class="form-control validate" name="Img"
+                                              rows="3" style="width:200px ; height:200px"
+                                              required id="imgLink"></textarea>
+                                </div>
+                                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                    <label for="img">hình bạn vừa thêm</label>
+                                    <img id="img" alt="Hình ảnh không thể tải" style="width: 200px; height: 200px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <div class="row">
+                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                <label for="NgheSi">Nghệ sĩ</label>
+                                <select class="custom-select tm-select-accounts"
+                                        id="ArtistID" name="ArtistID">
+                                    <option selected>Chọn artist </option>
+                                    @foreach (var item in Session["at"] as List<Artist>)
+                                    {
+                                        <option value="@item.ArtistID">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                <label for="Album">Album</label>
+                                <select class="custom-select tm-select-accounts"
+                                        id="AlbumID" name="AlbumID">
+                                    <option selected>Chọn album </option>
+                                    @foreach (var item in Session["ab"] as List<Album>)
+                                    {
+                                        <option value="@item.AlbumID">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="custom-file mt-3 mb-3">
+                            <input id="fileInput" name="fileInput" type="file" style="display:none;" accept="Music/*" />
+                            <input type="button"
+                                   class="btn btn-light px-5 btn-block mx-auto"
+                                   value="UPLOAD PRODUCT AUDIO"
+                                   onclick="document.getElementById('fileInput').click();" />
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <button type="submit" class="btn btn-light px-5 btn-block text-uppercase">Add Track Now</button>
+                    </div>
+
+                }
+                <div>
+                    @if (ViewBag.mess != string.Empty)
+                    {
+                        <p>@ViewBag.mess</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('imgLink').addEventListener('input', function () {
+        var imageUrl = this.value.trim(); // Lấy giá trị từ textarea và loại bỏ khoảng trắng đầu/cuối
+        var imgElement = document.getElementById('img'); // Thẻ <img>
+
+        console.log("Đường dẫn hình ảnh:", imageUrl); // Kiểm tra giá trị của đường link nhập vào
+
+        if (imageUrl) {
+            // Kiểm tra nếu URL là hợp lệ (bắt đầu bằng http hoặc https)
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                imgElement.src = imageUrl; // Cập nhật nguồn hình ảnh
+                imgElement.onload = function () {
+                    console.log("Hình ảnh đã tải thành công.");
+                    imgElement.style.display = "block"; // Hiển thị ảnh nếu tải thành công
+                };
+                imgElement.onerror = function () {
+                    console.log("Lỗi khi tải hình ảnh.");
+                    imgElement.style.display = "none"; // Ẩn ảnh nếu có lỗi
+                };
+            } else {
+                imgElement.src = '#'; // Nếu URL không hợp lệ, không cập nhật hình ảnh
+                imgElement.style.display = "none"; // Ẩn ảnh nếu không hợp lệ
+            }
+        } else {
+            imgElement.src = "#"; // Nếu không có link, giữ ảnh mặc định hoặc ẩn ảnh
+            imgElement.style.display = "none"; // Ẩn ảnh khi không có đường link
+        }
+    });
+
+</script>
+
+

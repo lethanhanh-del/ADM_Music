@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ADM" Class="ADMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Get_Album" Member="Get_Albums">
+    <Type Name="Get_Album">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Get_Artist" Member="Get_Artists">
+    <Type Name="Get_Artist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Top3AlbumsByLikes" Member="Top3AlbumsByLikes">
+    <Type Name="Top3AlbumsByLike">
+      <Column Name="NameAb" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalLikes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Top3ArtistsByLikes" Member="Top3ArtistsByLikes">
+    <Type Name="Top3ArtistsByLike">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalLikes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Album" Member="Albums">
+    <Type Name="Album">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Album_UsersAlbum" Member="UsersAlbums" ThisKey="AlbumID" OtherKey="AlbumID" Type="UsersAlbum" />
+      <Association Name="Album_AlbumDetail" Member="AlbumDetails" ThisKey="AlbumID" OtherKey="AlbumID" Type="AlbumDetail" />
+      <Association Name="Album_Track" Member="Tracks" ThisKey="AlbumID" OtherKey="AlbumID" Type="Track" />
+      <Association Name="Artist_Album" Member="Artist" ThisKey="ArtistID" OtherKey="ArtistID" Type="Artist" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsersAlbum" Member="UsersAlbums">
+    <Type Name="UsersAlbum">
+      <Column Name="UsersID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Album_UsersAlbum" Member="Album" ThisKey="AlbumID" OtherKey="AlbumID" Type="Album" IsForeignKey="true" />
+      <Association Name="User_UsersAlbum" Member="User" ThisKey="UsersID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlbumDetails" Member="AlbumDetails">
+    <Type Name="AlbumDetail">
+      <Column Name="PurchaseID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Album_AlbumDetail" Member="Album" ThisKey="AlbumID" OtherKey="AlbumID" Type="Album" IsForeignKey="true" />
+      <Association Name="AlbumPurchase_AlbumDetail" Member="AlbumPurchase" ThisKey="PurchaseID" OtherKey="PurchaseID" Type="AlbumPurchase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlbumPurchase" Member="AlbumPurchases">
+    <Type Name="AlbumPurchase">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PurchaseID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="UsersID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Method" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MaTrangThai" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="AlbumPurchase_AlbumDetail" Member="AlbumDetails" ThisKey="PurchaseID" OtherKey="PurchaseID" Type="AlbumDetail" />
+      <Association Name="TrangThaiDH_AlbumPurchase" Member="TrangThaiDH" ThisKey="MaTrangThai" OtherKey="MaTrangThai" Type="TrangThaiDH" IsForeignKey="true" />
+      <Association Name="User_AlbumPurchase" Member="User" ThisKey="UsersID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Artist" Member="Artists">
+    <Type Name="Artist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Artist_Album" Member="Albums" ThisKey="ArtistID" OtherKey="ArtistID" Type="Album" />
+      <Association Name="Artist_ArtistLike" Member="ArtistLikes" ThisKey="ArtistID" OtherKey="ArtistID" Type="ArtistLike" />
+      <Association Name="Artist_Track" Member="Tracks" ThisKey="ArtistID" OtherKey="ArtistID" Type="Track" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ArtistLikes" Member="ArtistLikes">
+    <Type Name="ArtistLike">
+      <Column Name="UsersID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Artist_ArtistLike" Member="Artist" ThisKey="ArtistID" OtherKey="ArtistID" Type="Artist" IsForeignKey="true" />
+      <Association Name="User_ArtistLike" Member="User" ThisKey="UsersID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Playlist" Member="Playlists">
+    <Type Name="Playlist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlaylistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Playlist_PlaylistTrack" Member="PlaylistTracks" ThisKey="PlaylistID" OtherKey="PlaylistID" Type="PlaylistTrack" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlaylistTrack" Member="PlaylistTracks">
+    <Type Name="PlaylistTrack">
+      <Column Name="PlaylistID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UsersID" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Association Name="Playlist_PlaylistTrack" Member="Playlist" ThisKey="PlaylistID" OtherKey="PlaylistID" Type="Playlist" IsForeignKey="true" />
+      <Association Name="Track_PlaylistTrack" Member="Track" ThisKey="TrackID" OtherKey="TrackID" Type="Track" IsForeignKey="true" />
+      <Association Name="User_PlaylistTrack" Member="User" ThisKey="UsersID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Track" Member="Tracks">
+    <Type Name="Track">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[_FILE]" Member="_FILE" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Track_PlaylistTrack" Member="PlaylistTracks" ThisKey="TrackID" OtherKey="TrackID" Type="PlaylistTrack" />
+      <Association Name="Track_TrackLike" Member="TrackLikes" ThisKey="TrackID" OtherKey="TrackID" Type="TrackLike" />
+      <Association Name="Album_Track" Member="Album" ThisKey="AlbumID" OtherKey="AlbumID" Type="Album" IsForeignKey="true" />
+      <Association Name="Artist_Track" Member="Artist" ThisKey="ArtistID" OtherKey="ArtistID" Type="Artist" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrackLikes" Member="TrackLikes">
+    <Type Name="TrackLike">
+      <Column Name="UsersID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Track_TrackLike" Member="Track" ThisKey="TrackID" OtherKey="TrackID" Type="Track" IsForeignKey="true" />
+      <Association Name="User_TrackLike" Member="User" ThisKey="UsersID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrangThaiDH" Member="TrangThaiDHs">
+    <Type Name="TrangThaiDH">
+      <Column Name="MaTrangThai" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTrangThai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TrangThaiDH_AlbumPurchase" Member="AlbumPurchases" ThisKey="MaTrangThai" OtherKey="MaTrangThai" Type="AlbumPurchase" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UsersID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Usersname" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="User_UsersAlbum" Member="UsersAlbums" ThisKey="UsersID" OtherKey="UsersID" Type="UsersAlbum" />
+      <Association Name="User_AlbumPurchase" Member="AlbumPurchases" ThisKey="UsersID" OtherKey="UsersID" Type="AlbumPurchase" />
+      <Association Name="User_ArtistLike" Member="ArtistLikes" ThisKey="UsersID" OtherKey="UsersID" Type="ArtistLike" />
+      <Association Name="User_PlaylistTrack" Member="PlaylistTracks" ThisKey="UsersID" OtherKey="UsersID" Type="PlaylistTrack" />
+      <Association Name="User_TrackLike" Member="TrackLikes" ThisKey="UsersID" OtherKey="UsersID" Type="TrackLike" />
+      <Association Name="User_Users_Info" Member="Users_Info" ThisKey="UsersID" OtherKey="UserID" Type="Users_Info" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users_Info" Member="Users_Infos">
+    <Type Name="Users_Info">
+      <Column Name="UserID" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[_Name]" Member="_Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Number_Phone" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="User_Users_Info" Member="User" ThisKey="UserID" OtherKey="UsersID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetTop10RandomSongs" Method="GetTop10RandomSongs">
+    <ElementType Name="GetTop10RandomSongsResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[_FILE]" Member="_FILE" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTop3ArtistLike" Method="GetTop3ArtistLike">
+    <ElementType Name="GetTop3ArtistLikeResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get5AlbumTroiXanh" Method="Get5AlbumTroiXanh">
+    <ElementType Name="Get5AlbumTroiXanhResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get5AlbumLike" Method="Get5AlbumLike">
+    <ElementType Name="Get5AlbumLikeResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get5TrackTamTrang" Method="Get5TrackTamTrang">
+    <ElementType Name="Get5TrackTamTrangResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[_FILE]" Member="_FILE" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get_ALL_Tracks" Method="Get_ALL_Tracks" IsComposable="true">
+    <ElementType Name="Get_ALL_TracksResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrackID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="TenBH" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[_FILE]" Member="_FILE" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TenNS" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TenAB" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Add_new_Track" Method="Add_new_Track">
+    <Parameter Name="TrackID" Parameter="trackID" Type="System.String" DbType="Char(5)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="_FILE" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ArtistID" Parameter="artistID" Type="System.String" DbType="Char(5)" />
+    <Parameter Name="AlbumID" Parameter="albumID" Type="System.String" DbType="Char(5)" />
+    <Parameter Name="Duration" Parameter="duration" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="Img" Parameter="img" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="Add_new_TrackResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTop8RandomAlbums" Method="GetTop8RandomAlbums">
+    <ElementType Name="GetTop8RandomAlbumsResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSongsInAlbum" Method="GetSongsInAlbum" IsComposable="true">
+    <Parameter Name="AlbumID" Parameter="albumID" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="GetSongsInAlbumResult">
+      <Column Name="TrackName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ArtistID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ArtistName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Get_All_Artist_DSQL" Method="Get_All_Artist_DSQL">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateAlbumInfoCursor" Method="UpdateAlbumInfoCursor">
+    <Parameter Name="AlbumID" Parameter="albumID" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="TenAlbum" Parameter="tenAlbum" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Genre" Parameter="genre" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="Img" Parameter="img" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateArtistInfo" Method="UpdateArtistInfo">
+    <Parameter Name="ArtistID" Parameter="artistID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NewName" Parameter="newName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="NewGenre" Parameter="newGenre" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="NewDateOfBirth" Parameter="newDateOfBirth" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="NewImg" Parameter="newImg" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CountTracksInPlaylists" Method="CountTracksInPlaylists">
+    <ElementType Name="CountTracksInPlaylistsResult">
+      <Column Name="PlaylistName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TotalTracks" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.CountNewCustomers" Method="CountNewCustomers">
+    <ElementType Name="CountNewCustomersResult">
+      <Column Name="NewCustomers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetMonthlyTotal" Method="GetMonthlyTotal" IsComposable="true">
+    <Parameter Name="year" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetMonthlyTotalResult">
+      <Column Name="Thang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TongTien" Type="System.Decimal" DbType="Decimal(38,0) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAlbumInfo" Method="GetAlbumInfo" IsComposable="true">
+    <ElementType Name="GetAlbumInfoResult">
+      <Column Name="AlbumID" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="TenAlbum" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TenNgheSi" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Genre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LikeNum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,520 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap"); /* Import font "Lexend" từ Google Fonts với các trọng số khác nhau và hiển thị ngay sau khi tải */
+
+h2 {
+  position: relative; /* Thiết lập vị trí tương đối cho thẻ h2 */
+  z-index: 10; /* Đặt thẻ h2 lên trên các phần tử khác nếu chúng chồng lên nhau */
+}
+
+img {
+  max-width: 100%; /* Hình ảnh sẽ không vượt quá chiều rộng của phần tử chứa */
+  display: block; /* Hiển thị hình ảnh như một khối */
+}
+
+.music {
+  cursor: pointer; /* Thay đổi con trỏ thành biểu tượng tay khi di chuột qua phần tử có class "music" */
+}
+
+.carousel_auto {
+  pointer-events: none; /* Vô hiệu hóa tất cả các sự kiện chuột trên phần tử và con của nó */
+  padding-block-start: 97px; /* Khoảng cách đệm ở phía trên theo chuẩn block */
+  padding-block-end: max(24px, calc(29px + 1.88rem)); /* Khoảng cách đệm ở phía dưới với giá trị tối đa giữa 24px và kết quả của phép tính */
+  perspective: 100px; /* Tạo hiệu ứng phối cảnh 3D cho các phần tử con */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của phần tử chứa */
+}
+
+@media (max-width: 568px) {
+  .carousel_auto {
+    padding-block-end: 52px; /* Giảm khoảng cách đệm ở phía dưới khi màn hình có chiều rộng nhỏ hơn hoặc bằng 568px */
+  }
+}
+
+.carousel_auto__wrapper {
+  position: relative; /* Thiết lập vị trí tương đối */
+  display: flex; /* Hiển thị các phần tử con theo dạng flexbox */
+  justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+  height: 35vh; /* Chiều cao bằng 35% của chiều cao viewport */
+}
+
+.carousel_auto img {
+  border-radius: 10px; /* Bo góc hình ảnh */
+}
+
+.carousel_auto .item {
+  position: absolute; /* Định vị phần tử tuyệt đối so với phần tử chứa */
+  max-width: 418px; /* Chiều rộng tối đa */
+  height: 100%; /* Chiều cao bằng 100% của phần tử chứa */
+  margin-inline: 32px; /* Khoảng cách đệm bên trái và phải */
+  opacity: 0; /* Ẩn phần tử */
+  will-change: transform, opacity; /* Tối ưu hóa hiệu suất cho các thuộc tính sẽ thay đổi */
+  animation: carousel-animate 27s cubic-bezier(0.37, 0, 0.63, 1) infinite; /* Áp dụng hiệu ứng animation "carousel-animate" với thời gian 27 giây, easing cubic-bezier và lặp vô hạn */
+}
+
+@media (max-width: 568px) {
+  .carousel_auto .item {
+    margin-inline: calc(32px + 1px); /* Điều chỉnh khoảng cách đệm bên khi màn hình có chiều rộng nhỏ hơn hoặc bằng 568px */
+  }
+}
+
+.carousel_auto .item:nth-child(1) {
+  animation-delay: -3.857142857142857s; /* Trì hoãn animation cho phần tử con thứ nhất */
+}
+
+.carousel_auto .item:nth-child(2) {
+  animation-delay: 0s; /* Không trì hoãn animation cho phần tử con thứ hai */
+}
+
+.carousel_auto .item:nth-child(3) {
+  animation-delay: 3.857142857142857s; /* Trì hoãn animation cho phần tử con thứ ba */
+}
+
+.carousel_auto .item:nth-child(4) {
+  animation-delay: 7.714285714285714s; /* Trì hoãn animation cho phần tử con thứ tư */
+}
+
+.carousel_auto .item:nth-child(5) {
+  animation-delay: 11.571428571428571s; /* Trì hoãn animation cho phần tử con thứ năm */
+}
+
+.carousel_auto .item:nth-child(6) {
+  animation-delay: 15.428571428571429s; /* Trì hoãn animation cho phần tử con thứ sáu */
+}
+
+.carousel_auto .item:nth-child(7) {
+  animation-delay: 19.285714285714285s; /* Trì hoãn animation cho phần tử con thứ bảy */
+}
+
+.carousel_auto .item:last-child {
+  animation-delay: -7.714285714285714s; /* Trì hoãn animation cho phần tử con cuối cùng */
+}
+
+.carousel_auto .item img {
+  max-width: 100%; /* Chiều rộng tối đa bằng 100% */
+  object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ phần tử mà không làm méo hình */
+  height: 100%; /* Chiều cao bằng 100% của phần tử chứa */
+}
+
+@keyframes carousel-animate {
+  0% {
+    visibility: hidden; /* Ẩn phần tử */
+    opacity: 0; /* Độ mờ bằng 0 */
+    transform: translateX(200%) scale(0.7); /* Dịch chuyển phần tử 200% theo trục X và thu nhỏ */
+  }
+  3%,
+  14.285714285714286% {
+    visibility: visible; /* Hiển thị phần tử */
+    opacity: 0.8; /* Độ mờ bằng 0.8 */
+    transform: translateX(100%) scale(0.9); /* Dịch chuyển phần tử 100% theo trục X và thu nhỏ */
+  }
+  17.285714285714285%,
+  28.57142857142857% {
+    visibility: visible; /* Hiển thị phần tử */
+    opacity: 1; /* Độ mờ bằng 1 */
+    transform: translateX(0) scale(1); /* Đưa phần tử về vị trí ban đầu và kích thước bình thường */
+  }
+  31.57142857142857%,
+  42.857142857142854% {
+    visibility: visible; /* Hiển thị phần tử */
+    opacity: 0.8; /* Độ mờ bằng 0.8 */
+    transform: translateX(-100%) scale(0.9); /* Dịch chuyển phần tử -100% theo trục X và thu nhỏ */
+  }
+  45.857142857142854% {
+    visibility: visible; /* Hiển thị phần tử */
+    opacity: 0; /* Độ mờ bằng 0 */
+    transform: translateX(-200%) scale(0.9); /* Dịch chuyển phần tử -200% theo trục X và thu nhỏ */
+  }
+  100% {
+    visibility: hidden; /* Ẩn phần tử */
+    opacity: 0; /* Độ mờ bằng 0 */
+    transform: translateX(-200%) scale(0.7); /* Dịch chuyển phần tử -200% theo trục X và thu nhỏ */
+  }
+}
+
+.card-list {
+  width: 90%; /* Chiều rộng bằng 90% */
+  max-width: 400px; /* Chiều rộng tối đa bằng 400px */
+}
+
+.card {
+  background-color: #ffffff11; /* Màu nền với độ trong suốt */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+  border-radius: 15px; /* Bo góc phần tử */
+  overflow: hidden; /* Ẩn các phần tử tràn ra ngoài */
+  padding: 1.25rem; /* Khoảng cách đệm bên trong */
+  position: relative; /* Định vị tương đối */
+  transition: 0.15s ease-in; /* Hiệu ứng chuyển tiếp */
+}
+
+.card:hover,
+.card:focus-within {
+  box-shadow: 0 0 0 2px #16c79a, 0 10px 60px 0 rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng khi hover hoặc focus */
+  transform: translateY(-5px); /* Di chuyển phần tử lên trên 5px */
+}
+
+.card-image {
+  border-radius: 10px; /* Bo góc phần tử */
+  overflow: hidden; /* Ẩn các phần tử tràn ra ngoài */
+}
+
+.card-header {
+  margin-top: 1.5rem;  Khoảng cách đệm phía trên 
+  display: flex;  /*Hiển thị các phần tử con theo dạng flexbox */
+  align-items: center;  /*Căn giữa theo chiều dọc */
+  color: #fff;  /*Màu chữ */
+  justify-content: space-between;  /*Căn đều các phần tử con */
+}
+
+.card-header a {
+  font-weight: 600; /* Độ đậm của chữ */
+  font-size: 18px; /* Kích thước chữ */
+  line-height: 1.25; /* Chiều cao dòng */
+  padding-right: 1rem; /* Khoảng cách đệm bên phải */
+  text-decoration: none; /* Bỏ gạch chân */
+  color: inherit; /* Màu chữ kế thừa từ phần tử cha */
+  will-change: transform; /* Tối ưu hóa hiệu suất cho thuộc tính sẽ thay đổi */
+  position: relative; /* Định vị tương đối */
+}
+
+.card-header a:after {
+  content: ""; /* Nội dung pseudo-element rỗng */
+  position: absolute; /* Định vị tuyệt đối */
+  left: 0; /* Căn trái */
+  top: 0; /* Căn trên */
+  right: 0; /* Căn phải */
+  bottom: 0; /* Căn dưới */
+}
+
+.icon-button {
+  border: 0; /* Không viền */
+  background-color: #fff; /* Màu nền */
+  border-radius: 50%; /* Bo tròn phần tử */
+  width: 2.5rem; /* Chiều rộng */
+  height: 2.5rem; /* Chiều cao */
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  flex-shrink: 0; /* Không co lại */
+  font-size: 1.25rem; /* Kích thước chữ */
+  transition: 0.25s ease; /* Hiệu ứng chuyển tiếp */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 3px 8px 0 rgba(0, 0, 0, 0.15); /* Hiệu ứng đổ bóng */
+  z-index: 1; /* Z-index */
+  cursor: pointer; /* Thay đổi con trỏ thành biểu tượng tay */
+  color: #565656; /* Màu chữ */
+}
+
+.icon-button svg {
+  width: 1em; /* Chiều rộng */
+  height: 1em; /* Chiều cao */
+}
+
+.icon-button:hover,
+.icon-button:focus {
+  background-color: #ec4646; /* Màu nền khi hover hoặc focus */
+  color: #fff; /* Màu chữ khi hover hoặc focus */
+}
+
+.card-footer {
+  margin-top: 1.25rem; /* Khoảng cách đệm phía trên */
+  border-top: 1px solid #ddd; /* Viền trên */
+  padding-top: 1.25rem; /* Khoảng cách đệm phía trên */
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  flex-wrap: wrap; /* Cho phép các phần tử con gói thành nhiều dòng */
+}
+
+.card-meta {
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  color: #787878; /* Màu chữ */
+}
+
+.card-meta:first-child:after {
+  display: block; /* Hiển thị như một khối */
+  content: ""; /* Nội dung pseudo-element rỗng */
+  width: 4px; /* Chiều rộng */
+  height: 4px; /* Chiều cao */
+  border-radius: 50%; /* Bo tròn */
+  background-color: currentcolor; /* Màu nền kế thừa từ thuộc tính "color" */
+  margin-left: 0.75rem; /* Khoảng cách đệm bên trái */
+  margin-right: 0.75rem; /* Khoảng cách đệm bên phải */
+}
+
+.card-meta svg {
+  flex-shrink: 0; /* Không co lại */
+  width: 1em; /* Chiều rộng */
+  height: 1em; /* Chiều cao */
+  margin-right: 0.25em; /* Khoảng cách đệm bên phải */
+}
+
+.carousel {
+  width: 100%; /* Chiều rộng bằng 100% */
+  padding: 30px; /* Khoảng cách đệm */
+  padding-top: 80px; /* Khoảng cách đệm phía trên */
+  margin-top: 50px; /* Khoảng cách ngoài phía trên */
+  position: relative; /* Định vị tương đối */
+  box-sizing: border-box; /* Tính toán kích thước bao gồm cả viền và đệm */
+}
+
+.carousel__container {
+  white-space: nowrap; /* Không ngắt dòng */
+  margin: 50px 0; /* Khoảng cách ngoài trên và dưới */
+  padding-bottom: 10px; /* Khoảng cách đệm phía dưới */
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.categories__title {
+  color: rgb(252, 249, 255); /* Màu chữ */
+  font-size: 28px; /* Kích thước chữ */
+  position: absolute; /* Định vị tuyệt đối */
+  padding-left: 30px; /* Khoảng cách đệm bên trái */
+}
+
+.carousel-item {
+  width: 200px; /* Chiều rộng */
+  height: 250px; /* Chiều cao */
+  padding: 0; /* Không có khoảng cách đệm */
+  border-radius: 20px; /* Bo góc phần tử */
+  background-color: #95bcd6; /* Màu nền */
+  overflow: hidden; /* Ẩn các phần tử tràn ra ngoài */
+  margin-right: 50px; /* Khoảng cách ngoài bên phải */
+  margin-top: 70px; /* Khoảng cách ngoài phía trên */
+  display: inline-block; /* Hiển thị phần tử như một khối inline */
+  cursor: pointer; /* Thay đổi con trỏ thành biểu tượng tay */
+  transition: 1000ms all; /* Hiệu ứng chuyển tiếp */
+  transform-origin: center left; /* Gốc biến đổi ở trung tâm bên trái */
+  position: relative; /* Định vị tương đối */
+}
+
+.carousel-item:hover ~ .carousel-item {
+  transform: translate3d(100px, 0, 0); /* Dịch chuyển phần tử 100px theo trục X */
+}
+
+.carousel__container:hover .carousel-item {
+  opacity: 0.3; /* Giảm độ mờ */
+}
+
+.carousel__container:hover .carousel-item:hover {
+  transform: scale(1.5); /* Phóng to phần tử */
+  opacity: 1; /* Tăng độ mờ */
+}
+
+.carousel-item__img {
+  width: 200px; /* Chiều rộng */
+  height: 250px; /* Chiều cao */
+  object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ phần tử mà không làm méo hình */
+}
+
+.carousel-item__details {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0) 100%
+  ); /* Tạo hiệu ứng gradient nền */
+  font-size: 10px; /* Kích thước chữ */
+  opacity: 0; /* Độ mờ */
+  transition: 450ms opacity; /* Hiệu ứng chuyển tiếp */
+  padding: 10px; /* Khoảng cách đệm */
+  position: absolute; /* Định vị tuyệt đối */
+  top: 0; /* Căn trên */
+  left: 0; /* Căn trái */
+  right: 0; /* Căn phải */
+  bottom: 0; /* Căn dưới */
+}
+
+.carousel-item__details:hover {
+  opacity: 1; /* Tăng độ mờ */
+}
+
+.carousel-item__details span {
+  font-size: 0.9rem; /* Kích thước chữ */
+  color: #2ecc71; /* Màu chữ */
+}
+
+.carousel-item__details .controls {
+  padding-top: 150px; /* Khoảng cách đệm phía trên */
+}
+
+.carousel-item__details .carousel-item__details--title,
+.carousel-item__details--subtitle {
+  color: #fff; /* Màu chữ */
+  margin: 5px 0; /* Khoảng cách ngoài trên và dưới */
+}
+
+.profile {
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  flex-direction: column; /* Sắp xếp phần tử con theo cột */
+  padding: 3rem; /* Khoảng cách đệm */
+  width: 80%; /* Chiều rộng bằng 80% */
+  background-color: #1b2028; /* Màu nền */
+  border-radius: 16px; /* Bo góc phần tử */
+  position: relative; /* Định vị tương đối */
+  border: 3px solid transparent; /* Viền trong suốt */
+  background-clip: padding-box; /* Cắt nền */
+  text-align: center; /* Căn giữa văn bản */
+  color: #f1f3f3; /* Màu chữ */
+  background-image: linear-gradient(
+    135deg,
+    rgba(117, 46, 124, 0.35),
+    rgba(115, 74, 88, 0.1) 15%,
+    #1b2028 20%,
+    #1b2028 100%
+  ); /* Tạo hiệu ứng gradient nền */
+}
+
+.profile:after {
+  content: ""; /* Nội dung pseudo-element rỗng */
+  display: block; /* Hiển thị như một khối */
+  top: -3px; /* Căn trên */
+  left: -3px; /* Căn trái */
+  bottom: -3px; /* Căn dưới */
+  right: -3px; /* Căn phải */
+  z-index: -1; /* Z-index */
+  position: absolute; /* Định vị tuyệt đối */
+  border-radius: 16px; /* Bo góc phần tử */
+  background-image: linear-gradient(
+    135deg,
+    #752e7c,
+    #734a58 20%,
+    #1b2028 30%,
+    #2c333e 100%
+  ); /* Tạo hiệu ứng gradient nền */
+}
+
+.profile-image {
+  border-radius: 50%; /* Bo góc phần tử */
+  overflow: hidden; /* Ẩn các phần tử tràn ra ngoài */
+  width: 220px; /* Chiều rộng */
+  height: 220px; /* Chiều cao */
+  position: relative; /* Định vị tương đối */
+}
+
+.profile-image img {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 50%; /* Căn giữa theo trục Y */
+  left: 50%; /* Căn giữa theo trục X */
+  transform: translate(-50%, -50%); /* Dịch chuyển phần tử */
+  width: 100%; /* Chiều rộng bằng 100% */
+}
+
+.profile-username {
+  font-size: 1.5rem; /* Kích thước chữ */
+  font-weight: 600; /* Độ đậm của chữ */
+  margin-top: 1.5rem; /* Khoảng cách ngoài phía trên */
+}
+
+.profile-user-handle {
+  color: #7d8396; /* Màu chữ */
+}
+
+.profile-actions {
+  margin-top: 1.5rem; /* Khoảng cách ngoài phía trên */
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.profile-actions > * {
+  margin: 0 0.25rem; /* Khoảng cách ngoài trái và phải */
+}
+
+.btn {
+  border: 0; /* Không viền */
+  background-color: transparent; /* Màu nền trong suốt */
+  padding: 0; /* Không có khoảng cách đệm */
+  height: 46px; /* Chiều cao */
+  display: flex; /* Hiển thị phần tử con theo dạng flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  cursor: pointer; /* Thay đổi con trỏ thành biểu tượng tay */
+  line-height: 1; /* Chiều cao dòng */
+  transition: 0.15s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+.btn--primary {
+  border-radius: 99em; /* Bo tròn phần tử */
+  background-color: #3772ff; /* Màu nền */
+  background-image: linear-gradient(135deg, #5587ff, #3772ff); /* Tạo hiệu ứng gradient nền */
+  color: #fff; /* Màu chữ */
+  padding: 0 1.375em; /* Khoảng cách đệm trái và phải */
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+  background-size: 150%; /* Kích thước nền */
+}
+
+.btn--icon {
+  height: 46px; /* Chiều cao */
+  width: 46px; /* Chiều rộng */
+  border-radius: 50%; /* Bo tròn phần tử */
+  border: 3px solid #343945; /* Viền */
+  color: #7d8396; /* Màu chữ */
+}
+
+.btn--icon i {
+  font-size: 1.25em; /* Kích thước chữ */
+}
+
+.btn--icon:hover,
+.btn--icon:focus {
+  background-color: #ec4646; /* Màu nền khi hover hoặc focus */
+  color: #fff; /* Màu chữ khi hover hoặc focus */
+}
+
+.profile-links {
+  margin-top: 3.5rem; /* Khoảng cách ngoài phía trên */
+}
+
+.link {
+  text-decoration: none; /* Không gạch chân */
+  color: #7d8396; /* Màu chữ */
+  margin-left: 0.375rem; /* Khoảng cách ngoài bên trái */
+  margin-right: 0.375rem; /* Khoảng cách ngoài bên phải */
+}
+
+.link i {
+  font-size: 1.25em; /* Kích thước chữ */
+}
+
+.follow {
+  position: relative; /* Định vị tương đối */
+  transition: all 2s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+.follow:focus .fl {
+  transition: opacity 0.3s ease; /* Hiệu ứng chuyển tiếp */
+  opacity: 0; /* Giảm độ mờ */
+}
+
+.follow:focus::after {
+  content: "\f00c"; /* Mã Unicode cho biểu tượng check */
+  font-family: "Font Awesome 5 Free"; /* Font Awesome */
+  font-weight: 900; /* Độ đậm của chữ */
+  position: absolute; /* Định vị tuyệt đối */
+  top: 50%; /* Căn giữa theo trục Y */
+  left: 50%; /* Căn giữa theo trục X */
+  transform: translate(-50%, -50%); /* Dịch chuyển phần tử */
+  opacity: 0; /* Giảm độ mờ */
+  transition: opacity 0.3s ease; /* Hiệu ứng chuyển tiếp */
+  opacity: 1; /* Tăng độ mờ */
+}
+
+.img_2 {
+  width: 100%; /* Chiều rộng */
+  height: 100%; /* Chiều cao */
+  object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ phần tử mà không làm méo hình */
+  transform-origin: center; /* Gốc biến đổi ở trung tâm */
+  transform: perspective(800px) rotateY(25deg); /* Hiệu ứng biến đổi */
+  transition: 0.5s; /* Hiệu ứng chuyển tiếp */
+}
+
+.row:hover .img_2 {
+  opacity: 0.3; /* Giảm độ mờ */
+}
+
+.container_2 .img_2:hover {
+  transform: perspective(800px) rotateY(0deg); /* Hiệu ứng biến đổi */
+  opacity: 1; /* Tăng độ mờ */
+  cursor: pointer; /* Thay đổi con trỏ thành biểu tượng tay */
+}

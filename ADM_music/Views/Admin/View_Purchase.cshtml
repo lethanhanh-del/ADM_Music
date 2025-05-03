@@ -1,0 +1,143 @@
+﻿@using ADM_music.Models;
+@model List<AlbumDetail>
+@{
+    ViewBag.Title = "View_Purchase";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var DH =  Session["DH"] as AlbumPurchase;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .invoice-box {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            margin-bottom: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+        }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+                border-collapse: collapse;
+                color:black;
+            }
+
+                .invoice-box table td {
+                    padding: 8px;
+                    vertical-align: top;
+                }
+
+                .invoice-box table tr td:nth-child(4),
+                .invoice-box table tr td:nth-child(5) {
+                    text-align: right;
+                }
+
+                .invoice-box table tr.top table td {
+                    padding-bottom: 20px;
+                }
+
+                    .invoice-box table tr.top table td.title {
+                        font-size: 45px;
+                        line-height: 45px;
+                        color: #333;
+                    }
+
+                .invoice-box table tr.information table td {
+                    padding-bottom: 40px;
+                }
+
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 1px solid #ddd;
+                    font-weight: bold;
+                    text-align: left;
+                }
+
+                .invoice-box table tr.details td {
+                    padding-bottom: 20px;
+                }
+
+                .invoice-box table tr.item td {
+                    border-bottom: 1px solid #eee;
+                }
+
+                .invoice-box table tr.item.last td {
+                    border-bottom: none;
+                }
+
+                .invoice-box table tr.total td:nth-child(5) {
+                    border-top: 2px solid #eee;
+                    font-weight: bold;
+                }
+
+                .invoice-box table tr.top table td.right-align,
+                .invoice-box table tr.information table td.right-align {
+                    text-align: right;
+                }
+    </style>
+</head>
+
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="5">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="~/Content/admin/images/Favicon (1).png" style="width:100%; max-width:150px;">
+                            </td>
+                            <td class="right-align">
+                                Mã Đơn Hàng: DH0 @DH.PurchaseID<br>
+                                Ngày Tạo Đơn: @DH.PurchaseDate<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="5">
+                    <table>
+                        <tr>
+                            <td>
+                                Tên Khách hàng: null     @*@DH.User.Users_Info._Name*@<br>
+                                Email KH: @DH.User.Email<br>
+                            </td>
+                            <td class="right-align">
+                                Quản lý Cửa Hàng<br>
+                                ADM_TopTrendMusic@10ĐHQT.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Item</td>
+                <td>Quantity</td>
+                <td>Original Price</td>
+                <td>Total</td>
+            </tr>
+            @foreach (var item in @Model)
+            {
+                <tr class="item">
+                    <td style="width:55%">@item.Album.Name</td>
+                    <td>@item.Amount</td>
+                    <td>@item.Album.Price VND</td>
+                    <td>@item.TotalPrice VND</td>
+                </tr>
+            }
+            <tr class="total">
+                <td colspan="2"></td>
+                <td colspan="2" style="text-align: right; font-weight: bold;">Tổng Tiền: @DH.Total_Price VND</td>
+            </tr>
+        </table>
+    </div>
+
