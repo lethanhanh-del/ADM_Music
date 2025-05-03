@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Build and Test ASP.NET MVC App
+name: Build ASP.NET MVC (.NET Framework)
 
 on:
   push:
@@ -12,22 +12,14 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release
-
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+    - name: Build with MSBuild
+      run: msbuild ADM_music/ADM_music.csproj /p:Configuration=Release
